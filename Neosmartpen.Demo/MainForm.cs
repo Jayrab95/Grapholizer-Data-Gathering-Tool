@@ -13,6 +13,7 @@ using System.Drawing;
 using System.IO;
 using System.Threading;
 using System.Windows.Forms;
+using Neosmartpen.Net.Neosmartpen.Net.Export_Import;
 
 namespace PenDemo
 {
@@ -44,6 +45,8 @@ namespace PenDemo
         private PenCommV2 mPenCommV2;
 
         private IMetadataManager mMetadataManager;
+
+        public List<Stroke> TempStrokeSafe = new List<Stroke>();
 
         public delegate void RequestDele();
 
@@ -253,9 +256,8 @@ namespace PenDemo
             else if ( dot.DotType == DotTypes.PEN_UP )
             {
                 mStroke.Add( dot );
-
                 DrawStroke( mStroke );
-
+                TempStrokeSafe.Add(mStroke);
                 mFilter.Reset();
             }
         }
@@ -298,6 +300,31 @@ namespace PenDemo
             {
                 InitImage();
             }) );
+        }
+
+        private void buttonExport_Click(object sender, EventArgs e) {
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+            saveFileDialog1.Filter = "Json Files|*.json";
+            saveFileDialog1.Title = "Save to Json File";
+            String fileName = null;
+
+            if (saveFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                fileName = saveFileDialog1.FileName;
+    
+            }
+            JsonFormatter jsonF = new JsonFormatter();
+            Page page = new Page();
+            if (TempStrokeSafe.Count == 0) TempStrokeSafe.Add(new Stroke(1,1,1,1));
+            Stroke firstStroke = TempStrokeSafe[0];
+            page.Section = firstStroke.Section;
+            page.Owner = firstStroke.Owner;
+            page.Strokes = TempStrokeSafe;
+            String contents = jsonF.Format(page);
+            //contents ist ein String
+            Console.WriteLine("FilePath::: " + fileName);
+            File.WriteAllText(fileName, contents);
+             
         }
 
         private void Form1_FormClosed( object sender, FormClosedEventArgs e )
@@ -983,6 +1010,16 @@ namespace PenDemo
         }
 
         private void groupBox5_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox8_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tbPrivateKeyFilePath_TextChanged(object sender, EventArgs e)
         {
 
         }

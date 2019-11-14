@@ -1,4 +1,6 @@
-﻿namespace Neosmartpen.Net.Metadata.Model
+﻿using System.Collections.Generic;
+
+namespace Neosmartpen.Net.Metadata.Model
 {
     /// <summary>
     /// A class representing a Page in metadata
@@ -53,5 +55,7 @@
 		/// Crop Margin Bottom
 		/// </summary>
 		public float MarginB { get; set; }
-	}
+
+        public List<Stroke> Strokes { get; set; }
+    }
 }

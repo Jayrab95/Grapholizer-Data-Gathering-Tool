@@ -149,7 +149,7 @@ namespace Neosmartpen.Net
         /// <param name="type">the type of the dot</param>
         /// <param name="color">the color of the dot</param>
         public Dot( int owner, int section, int note, int page, long timestamp, int x, int y, int fx, int fy, int tiltX, int tiltY, int twist, int force, DotTypes type, int color )
-            : this( owner, section, note, page, timestamp, x, y, fx, fy, force,type,color)
+            : this( owner, section, note, page, timestamp, x, y, fx, fy, force, type, color)
         {
             TiltX = tiltX;
             TiltY = tiltY;

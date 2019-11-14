@@ -62,6 +62,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Neosmartpen\Net\Export_Import\CompressedDot.cs" />
+    <Compile Include="Neosmartpen\Net\Export_Import\TimeMarker.cs" />
+    <Compile Include="Neosmartpen\Net\Export_Import\CompressedPage.cs" />
+    <Compile Include="Neosmartpen\Net\Export_Import\Timeline.cs" />
+    <Compile Include="Neosmartpen\Net\Export_Import\CompressedStroke.cs" />
+    <Compile Include="Neosmartpen\Net\obsolete\CompressedDot.cs" />
+    <Compile Include="Neosmartpen\Net\Export_Import\JsonFormatter.cs" />
     <Compile Include="Neosmartpen\Net\Bluetooth\BluetoothAdapter.cs" />
     <Compile Include="Neosmartpen\Net\Chunk.cs" />
     <Compile Include="Neosmartpen\Net\ErrorType.cs" />
@@ -99,6 +106,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>
