@@ -9,7 +9,7 @@ namespace Neosmartpen.Net.Metadata.Model
 {
     /// <summary>
     /// A class representing a Map Datastructure that manages the entire internal state of the evaluation 
-    /// /// </summary>
+    /// </summary>
     public class Session
     {
         /// <summary>
@@ -17,7 +17,7 @@ namespace Neosmartpen.Net.Metadata.Model
         /// </summary>
         public Session(String CurrentParticipantID, String FilePath) {
             this.FilePath = FilePath;
-            this.CurrentPage = new Page();
+            this.CurrentPage = null;
             this.CurrentParticipantID = CurrentParticipantID;
 
             Participant participant = new Participant(CurrentParticipantID);
@@ -68,9 +68,8 @@ namespace Neosmartpen.Net.Metadata.Model
         /// Changes inner state of session to this participant
         /// </summary>
         public void ChangeParticipant(String participantID)
-        { 
+        {
             CurrentParticipantID = participantID;
-            //Redraw the Canvas
         }
         /// <summary>
         /// Adds Stroke to the current State of the Session
@@ -116,21 +115,15 @@ namespace Neosmartpen.Net.Metadata.Model
             }
             return -1;
         }
-        // <summary>
-        // Save the data structur to the file at FilePath
-        // </summary>
+        /// <summary>
+        /// Save the data structur to the file at FilePath
+        /// </summary>
         public bool SaveSessionToFile()
         { 
             String data = "";
             data = JsonFormatter.Format(ParticipantsMap);
-            if (File.Exists(FilePath))
-            {
-                File.WriteAllText(FilePath, data);
-                return true;
-            }
-            else {
-                return false;
-            }
+            File.WriteAllText(FilePath, data);
+            return true;
         }
 
         public String toString()
