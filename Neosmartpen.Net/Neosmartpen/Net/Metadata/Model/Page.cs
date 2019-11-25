@@ -7,6 +7,10 @@ namespace Neosmartpen.Net.Metadata.Model
     /// </summary>
     public class Page
 	{
+
+        public Page() {
+            Strokes = new List<Stroke>();
+        }
         /// <summary>
         /// Section
         /// </summary>

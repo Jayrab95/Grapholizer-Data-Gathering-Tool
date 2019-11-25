@@ -37,6 +37,8 @@
             this.labelExportError = new System.Windows.Forms.Label();
             this.labelCurrentParticipant = new System.Windows.Forms.Label();
             this.groupBoxExport = new System.Windows.Forms.GroupBox();
+            this.labelCurrentPageNum = new System.Windows.Forms.Label();
+            this.buttonpLastParticipant = new System.Windows.Forms.Button();
             this.txtMacAddress = new System.Windows.Forms.TextBox();
             this.btnConnect = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -84,8 +86,6 @@
             this.tbPrivateKeyFilePath = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
-            this.buttonpLastParticipant = new System.Windows.Forms.Button();
-            this.labelCurrentPageNum = new System.Windows.Forms.Label();
             this.groupBoxExport.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -181,7 +181,6 @@
             this.labelCurrentParticipant.Size = new System.Drawing.Size(170, 20);
             this.labelCurrentParticipant.TabIndex = 5;
             this.labelCurrentParticipant.Text = "Current Participant ID::";
-            this.labelCurrentParticipant.Click += new System.EventHandler(this.labelCurrentParticipant_Click);
             // 
             // groupBoxExport
             // 
@@ -201,7 +200,28 @@
             this.groupBoxExport.TabIndex = 26;
             this.groupBoxExport.TabStop = false;
             this.groupBoxExport.Text = "Participant Control";
-            this.groupBoxExport.Enter += new System.EventHandler(this.groupBoxExport_Enter);
+            this.groupBoxExport.Enabled = false;
+            // 
+            // labelCurrentPageNum
+            // 
+            this.labelCurrentPageNum.AutoSize = true;
+            this.labelCurrentPageNum.Location = new System.Drawing.Point(13, 160);
+            this.labelCurrentPageNum.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelCurrentPageNum.Name = "labelCurrentPageNum";
+            this.labelCurrentPageNum.Size = new System.Drawing.Size(118, 20);
+            this.labelCurrentPageNum.TabIndex = 25;
+            this.labelCurrentPageNum.Text = "Page Number:: ";
+            // 
+            // buttonpLastParticipant
+            // 
+            this.buttonpLastParticipant.Enabled = false;
+            this.buttonpLastParticipant.Location = new System.Drawing.Point(14, 205);
+            this.buttonpLastParticipant.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.buttonpLastParticipant.Name = "buttonpLastParticipant";
+            this.buttonpLastParticipant.Size = new System.Drawing.Size(140, 38);
+            this.buttonpLastParticipant.TabIndex = 24;
+            this.buttonpLastParticipant.Text = "Last Participant";
+            this.buttonpLastParticipant.UseVisualStyleBackColor = true;
             // 
             // txtMacAddress
             // 
@@ -574,7 +594,6 @@
             this.groupBox5.TabIndex = 35;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Pen Setting";
-            this.groupBox5.Enter += new System.EventHandler(this.groupBox5_Enter);
             // 
             // groupBox7
             // 
@@ -715,7 +734,6 @@
             this.tbPrivateKeyFilePath.ReadOnly = true;
             this.tbPrivateKeyFilePath.Size = new System.Drawing.Size(206, 26);
             this.tbPrivateKeyFilePath.TabIndex = 2;
-            this.tbPrivateKeyFilePath.TextChanged += new System.EventHandler(this.tbPrivateKeyFilePath_TextChanged);
             // 
             // label10
             // 
@@ -740,28 +758,6 @@
             this.groupBox8.TabIndex = 26;
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "Authentication Parameter";
-            this.groupBox8.Enter += new System.EventHandler(this.groupBox8_Enter);
-            // 
-            // buttonpLastParticipant
-            // 
-            this.buttonpLastParticipant.Enabled = false;
-            this.buttonpLastParticipant.Location = new System.Drawing.Point(14, 205);
-            this.buttonpLastParticipant.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.buttonpLastParticipant.Name = "buttonpLastParticipant";
-            this.buttonpLastParticipant.Size = new System.Drawing.Size(140, 38);
-            this.buttonpLastParticipant.TabIndex = 24;
-            this.buttonpLastParticipant.Text = "Last Participant";
-            this.buttonpLastParticipant.UseVisualStyleBackColor = true;
-            // 
-            // labelCurrentPageNum
-            // 
-            this.labelCurrentPageNum.AutoSize = true;
-            this.labelCurrentPageNum.Location = new System.Drawing.Point(13, 160);
-            this.labelCurrentPageNum.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelCurrentPageNum.Name = "labelCurrentPageNum";
-            this.labelCurrentPageNum.Size = new System.Drawing.Size(118, 20);
-            this.labelCurrentPageNum.TabIndex = 25;
-            this.labelCurrentPageNum.Text = "Page Number:: ";
             // 
             // MainForm
             // 
@@ -769,7 +765,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(1439, 1050);
+            this.ClientSize = new System.Drawing.Size(1465, 1050);
             this.Controls.Add(this.groupBoxExport);
             this.Controls.Add(this.groupBox8);
             this.Controls.Add(this.groupBox6);

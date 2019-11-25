@@ -52,16 +52,6 @@ namespace Neosmartpen.Net.Metadata.Model
         public Dictionary<String, Participant> ParticipantsMap { get; }
 
         /// <summary>
-        /// Changes Page and therefore the inner state of the Session
-        /// All new Strokes will be written to this new Page Object
-        /// </summary>
-        public void ChangePage(Page newPage)
-        {
-            ParticipantsMap[CurrentParticipantID].Pages.Add(newPage);
-            CurrentPage = newPage;
-        }
-
-        /// <summary>
         /// Changes Participant and therefore the inner state of the Session
         /// All new Pages and Strokes will be written to this new Participant-Object
         /// </summary>
@@ -108,6 +98,24 @@ namespace Neosmartpen.Net.Metadata.Model
             CurrentPage = newPage;
         }
 
+        public Page GetPage(int pageNumber)
+        {
+            List<Page> pages = ParticipantsMap[CurrentParticipantID].Pages;
+            foreach (Page page in pages) 
+            {
+                if (page.Number == pageNumber) return page;
+            }
+            return null;
+        }
+
+        public int GetPageIndex(int pageNumber) {
+            List<Page> pages = ParticipantsMap[CurrentParticipantID].Pages;
+            for (int i = 0; i < pages.Count; i++ )
+            {
+                if (pages[i].Number == pageNumber) return i;
+            }
+            return -1;
+        }
         // <summary>
         // Save the data structur to the file at FilePath
         // </summary>

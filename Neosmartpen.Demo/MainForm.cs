@@ -13,7 +13,7 @@ using System.Drawing;
 using System.IO;
 using System.Threading;
 using System.Windows.Forms;
-using Neosmartpen.Net.Export_Import;
+using Neosmartpen.Net.Neosmartpen.Net.Export_Import;
 
 namespace PenDemo
 {
@@ -196,12 +196,12 @@ namespace PenDemo
                 }
 
                 btnConnect.Enabled = false;
-
+                groupBoxExport.Enabled = true;
                 Thread thread = new Thread(unused =>
                {
                 // Binds a socket created by connecting with pen through Bluetooth interface according to Device Class
                 bool result = mBtAdt.Connect(txtMacAddress.Text, delegate (uint deviceClass)
-               {
+                {
                     // Binding when Device Class is F110
                     if (deviceClass == mPenCommV1.DeviceClass)
                        {
@@ -213,15 +213,15 @@ namespace PenDemo
                            mBtAdt.Bind(mPenCommV2);
                        }
                    });
-
                    if (!result)
                    {
                        MessageBox.Show("Fail to connect");
 
-                  this.BeginInvoke(new MethodInvoker(delegate ()
-                  {
-                           btnConnect.Enabled = true;
-                       }));
+                      this.BeginInvoke(new MethodInvoker(delegate ()
+                      {
+                          btnConnect.Enabled = true;
+                          groupBoxExport.Enabled = false;
+                      }));
                    }
                });
 
@@ -234,16 +234,16 @@ namespace PenDemo
                 {
                     btnConnect.Text = "Connect";
                     btnConnect.Enabled = true;
+                    groupBoxExport.Enabled = false;
                 }
             }
         }
 
-        private void ProcessDot( Dot dot )
+        private void ProcessDot(Dot dot)
         {
             //if (session == null) return;
             // Filtered pressure
-            dot.Force = mFilter.Filter( dot.Force );
-
+            dot.Force = mFilter.Filter(dot.Force);
             // TODO: Drawing sample code
             if (dot.DotType == DotTypes.PEN_DOWN)
             {
@@ -257,14 +257,49 @@ namespace PenDemo
             else if (dot.DotType == DotTypes.PEN_UP)
             {
                 mStroke.Add(dot);
-                //TODO Add new stroke to the participant
+                ProcessStroke(mStroke);
                 DrawStroke(mStroke);
                 mFilter.Reset();
             }
-            else {
-               //Console.WriteLine(dot.ToString());
+            else
+            {
+                //Console.WriteLine(dot.ToString());
             }
+        }
 
+        private void ProcessStroke(Stroke stroke)
+        {   
+            Page page = new Page();
+            page.Number = stroke.Page;
+            page.Book = stroke.Note;
+            page.Owner = stroke.Owner;
+            page.Section = stroke.Section;
+            //Check if this is the first page this participant writes on
+            if (session.CurrentPage == null)
+            {
+                session.NewPage(page);
+            }
+            if (session.CurrentPage.Number != page.Number)
+            { 
+                if (session.GetPage(page.Number) != null)
+                {
+                    session.ChangePage(session.GetPageIndex(page.Number));
+                }
+                else
+                {
+                    session.NewPage(page);
+                }
+                session.AddStrokeToParticipantPage(stroke);
+                InitImage();
+                foreach (Stroke s in session.CurrentPage.Strokes)
+                {
+                    DrawStroke(s);
+                }
+            }
+            else
+            {
+                session.AddStrokeToParticipantPage(stroke);
+            }
         }
 
         private void DrawStroke( Stroke stroke )
@@ -278,7 +313,6 @@ namespace PenDemo
                     int dy = (int)( ( 5.41 * mHeight ) / 88.88 );
 
                     Renderer.draw( mBitmap, stroke, (float)( mWidth / 63.46f ), (float)( mHeight / 88.88f ), -dx, -dy, 1, Color.FromArgb( 200, Color.Blue ) );
-
                     pictureBox1.Image = mBitmap;
                 }
             } ) );
@@ -329,7 +363,7 @@ namespace PenDemo
         private void buttonNextParticipant_Click(object sender, EventArgs e) {
             session.SaveSessionToFile();
             ParticipantCreateForm pCForm = new ParticipantCreateForm(this);
-            pCForm.Show(); //TODO
+            pCForm.Show();
         }
 
         public void acceptNewParticipantInput(String participantId)
@@ -1021,7 +1055,8 @@ namespace PenDemo
 
             Request(
                 delegate { },
-                delegate {
+                delegate
+                {
                     if (!mPenCommV2.IsSupportEncryption)
                     {
                         MessageBox.Show("The pen does not support secure communication.");
@@ -1034,31 +1069,6 @@ namespace PenDemo
                     }
                 }
             );
-        }
-
-        private void groupBox5_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void groupBox8_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tbPrivateKeyFilePath_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void groupBoxExport_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labelCurrentParticipant_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void btnSelectPrivateKey_Click(object sender, EventArgs e)
