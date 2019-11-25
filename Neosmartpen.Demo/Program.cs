@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using Neosmartpen.Net;
 using Neosmartpen.Net.Metadata.Model;
-using Neosmartpen.Net.Neosmartpen;
-using Neosmartpen.Net.Neosmartpen.Net.Export_Import;
 
 namespace PenDemo
 {

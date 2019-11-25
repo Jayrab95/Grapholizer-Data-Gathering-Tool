@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Neosmartpen.Net.Metadata.Model;
+using Neosmartpen.Net;
 
-namespace Neosmartpen.Net.Neosmartpen.Net.Export_Import
+namespace Neosmartpen.Net.Export_Import
 {
     class CompressedPage
     {
@@ -30,10 +30,6 @@ namespace Neosmartpen.Net.Neosmartpen.Net.Export_Import
             }
         }
 
-        public Page GetPage() {
-            //TODO implement this function
-            return new Page();
-        }
         public int Section { get; set; }
 
         public int Owner { get; set; }

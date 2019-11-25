@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Neosmartpen.Net.Neosmartpen.Net.Export_Import
+namespace Neosmartpen.Net.Export_Import
 {
     class CompressedDot
     {
-
         public CompressedDot(Dot dot, byte timeDiff) {
             X = dot.X;
             Fx = dot.Fx;

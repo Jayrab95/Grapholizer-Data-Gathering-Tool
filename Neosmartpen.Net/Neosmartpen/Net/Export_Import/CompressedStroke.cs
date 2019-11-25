@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Neosmartpen.Net.Metadata.Model;
 
-namespace Neosmartpen.Net.Neosmartpen.Net.Export_Import
+namespace Neosmartpen.Net.Export_Import
 {
     class CompressedStroke
     {

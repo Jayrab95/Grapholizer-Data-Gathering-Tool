@@ -13,7 +13,7 @@ using System.Drawing;
 using System.IO;
 using System.Threading;
 using System.Windows.Forms;
-using Neosmartpen.Net.Neosmartpen.Net.Export_Import;
+using Neosmartpen.Net.Export_Import;
 
 namespace PenDemo
 {
@@ -46,9 +46,9 @@ namespace PenDemo
 
         private IMetadataManager mMetadataManager;
 
-        public List<Stroke> TempStrokeSafe = new List<Stroke>();
+        private Session session { get; set; }
 
-        public delegate void RequestDele();
+    public delegate void RequestDele();
 
         public MainForm()
         {
@@ -139,7 +139,7 @@ namespace PenDemo
 
                     if ( devices == null || devices.Length <= 0 )
                     {
-                        MessageBox.Show( "device is not exists" );
+                        MessageBox.Show( "device does not exist" );
                     }
                     else
                     {
@@ -218,7 +218,7 @@ namespace PenDemo
                    {
                        MessageBox.Show("Fail to connect");
 
-                       this.BeginInvoke(new MethodInvoker(delegate ()
+                  this.BeginInvoke(new MethodInvoker(delegate ()
                   {
                            btnConnect.Enabled = true;
                        }));
@@ -240,26 +240,31 @@ namespace PenDemo
 
         private void ProcessDot( Dot dot )
         {
+            //if (session == null) return;
             // Filtered pressure
             dot.Force = mFilter.Filter( dot.Force );
 
             // TODO: Drawing sample code
-            if ( dot.DotType == DotTypes.PEN_DOWN )
+            if (dot.DotType == DotTypes.PEN_DOWN)
             {
-                mStroke = new Stroke( dot.Section, dot.Owner, dot.Note, dot.Page );
-                mStroke.Add( dot );
+                mStroke = new Stroke(dot.Section, dot.Owner, dot.Note, dot.Page);
+                mStroke.Add(dot);
             }
-            else if ( dot.DotType == DotTypes.PEN_MOVE )
+            else if (dot.DotType == DotTypes.PEN_MOVE)
             {
-                mStroke.Add( dot );
+                mStroke.Add(dot);
             }
-            else if ( dot.DotType == DotTypes.PEN_UP )
+            else if (dot.DotType == DotTypes.PEN_UP)
             {
-                mStroke.Add( dot );
-                DrawStroke( mStroke );
-                TempStrokeSafe.Add(mStroke);
+                mStroke.Add(dot);
+                //TODO Add new stroke to the participant
+                DrawStroke(mStroke);
                 mFilter.Reset();
             }
+            else {
+               //Console.WriteLine(dot.ToString());
+            }
+
         }
 
         private void DrawStroke( Stroke stroke )
@@ -301,30 +306,42 @@ namespace PenDemo
                 InitImage();
             }) );
         }
+        private void buttonNewSession_Click(object sender, EventArgs e)
+        {
+            if (session == null)
+            {
+                buttonNewSession.Text = "Stop Session";
+                NewSessionForm sessForm = new NewSessionForm(this);
+                sessForm.Show();
+            }
+            else {
+                //TODO(lukas)
+                //save the data again 
+            }
+        }
 
         private void buttonExport_Click(object sender, EventArgs e) {
-            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-            saveFileDialog1.Filter = "Json Files|*.json";
-            saveFileDialog1.Title = "Save to Json File";
-            String fileName = null;
+            buttonExport.Text = "Save ....";
+            session.SaveSessionToFile();
+            buttonExport.Text = "Save";
+        }
 
-            if (saveFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                fileName = saveFileDialog1.FileName;
-    
-            }
-            JsonFormatter jsonF = new JsonFormatter();
-            Page page = new Page();
-            if (TempStrokeSafe.Count == 0) TempStrokeSafe.Add(new Stroke(1,1,1,1));
-            Stroke firstStroke = TempStrokeSafe[0];
-            page.Section = firstStroke.Section;
-            page.Owner = firstStroke.Owner;
-            page.Strokes = TempStrokeSafe;
-            String contents = jsonF.Format(page);
-            //contents ist ein String
-            Console.WriteLine("FilePath::: " + fileName);
-            File.WriteAllText(fileName, contents);
-             
+        private void buttonNextParticipant_Click(object sender, EventArgs e) {
+            session.SaveSessionToFile();
+            ParticipantCreateForm pCForm = new ParticipantCreateForm(this);
+            pCForm.Show(); //TODO
+        }
+
+        public void acceptNewParticipantInput(String participantId)
+        {
+            session.NewParticipant(participantId);
+            labelCurrentParticipant.Text = "Current Participant ID:: " + participantId;
+        }
+
+        public void acceptNewSessionFormInput(Session session) {
+            this.session = session;
+            labelCurrentParticipant.Text = "Current Participant ID:: " + session.CurrentParticipantID;
+            buttonNextParticipant.Enabled = true;
         }
 
         private void Form1_FormClosed( object sender, FormClosedEventArgs e )
@@ -399,7 +416,11 @@ namespace PenDemo
         {
         }
 
-        void PenCommV1Callbacks.onReceivedPenStatus( IPenComm sender, int timeoffset, long timetick, int forcemax, int battery, int usedmem, int pencolor, bool autopower, bool accel, bool hovermode, bool beep, short autoshutdownTime, short penSensitivity, string modelName )
+        void PenCommV1Callbacks.onReceivedPenStatus( IPenComm sender, int timeoffset, long timetick
+            , int forcemax, int battery, int usedmem
+            , int pencolor, bool autopower, bool accel
+            , bool hovermode, bool beep, short autoshutdownTime
+            , short penSensitivity, string modelName )
         {
             this.BeginInvoke( new MethodInvoker( delegate()
             {
@@ -658,7 +679,13 @@ namespace PenDemo
             mPenCommV2.ReqOfflineDataList();
         }
 
-        void PenCommV2Callbacks.onReceivePenStatus( IPenComm sender, bool locked, int passwdMaxReTryCount, int passwdRetryCount, long timestamp, short autoShutdownTime, int maxForce, int battery, int usedmem, bool useOfflineData, bool autoPowerOn, bool penCapPower, bool hoverMode, bool beep, short penSensitivity, PenCommV2.UsbMode usbmode, bool downsampling, string btLocalName, PenCommV2.DataTransmissionType dataTransmissionType )
+        void PenCommV2Callbacks.onReceivePenStatus( IPenComm sender, bool locked, int passwdMaxReTryCount
+            , int passwdRetryCount, long timestamp, short autoShutdownTime
+            , int maxForce, int battery, int usedmem, bool useOfflineData
+            , bool autoPowerOn, bool penCapPower, bool hoverMode
+            , bool beep, short penSensitivity
+            , PenCommV2.UsbMode usbmode, bool downsampling, string btLocalName
+            , PenCommV2.DataTransmissionType dataTransmissionType )
         {
             this.BeginInvoke( new MethodInvoker( delegate()
             {
@@ -1020,6 +1047,16 @@ namespace PenDemo
         }
 
         private void tbPrivateKeyFilePath_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBoxExport_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void labelCurrentParticipant_Click(object sender, EventArgs e)
         {
 
         }

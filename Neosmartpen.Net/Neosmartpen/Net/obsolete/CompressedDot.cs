@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Neosmartpen.Net.Neosmartpen.Net.obsolete
+namespace Neosmartpen.Net.Page.Net.obsolete
 {
     class CompressedDot
     {
