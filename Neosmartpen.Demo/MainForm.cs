@@ -241,10 +241,7 @@ namespace PenDemo
 
         private void ProcessDot(Dot dot)
         {
-            //if (session == null) return;
-            // Filtered pressure
             dot.Force = mFilter.Filter(dot.Force);
-            // TODO: Drawing sample code
             if (dot.DotType == DotTypes.PEN_DOWN)
             {
                 mStroke = new Stroke(dot.Section, dot.Owner, dot.Note, dot.Page);
@@ -278,6 +275,7 @@ namespace PenDemo
             if (session.CurrentPage == null)
             {
                 session.NewPage(page);
+                labelPageNumberInput.Text = page.Number.ToString();
             }
             if (session.CurrentPage.Number != page.Number)
             { 
@@ -289,6 +287,7 @@ namespace PenDemo
                 {
                     session.NewPage(page);
                 }
+                labelPageNumberInput.Text = page.Number.ToString();
                 session.AddStrokeToParticipantPage(stroke);
                 InitImage();
                 DrawSession();
@@ -354,8 +353,9 @@ namespace PenDemo
                 sessForm.Show();
             }
             else {
-                //TODO(lukas)
-                //save the data again 
+                session.SaveSessionToFile();
+                session = null;
+                buttonNewSession.Text = "New Session";
             }
         }
 
