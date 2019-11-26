@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Neosmartpen.Net.Neosmartpen.Net.Export_Import;
 using System.IO;
 
@@ -23,27 +21,22 @@ namespace Neosmartpen.Net.Metadata.Model
             Participant participant = new Participant(CurrentParticipantID);
             ParticipantsMap = new Dictionary<string, Participant>();
             ParticipantsMap.Add(CurrentParticipantID, participant);
-
-            ParticipantIDs = new List<String>();
-            ParticipantIDs.Add(CurrentParticipantID);
         }
+
         /// <summary>
         /// Represents the Participant that is currently worked on by the application
         /// </summary>
         public String SessionID{ get; set; }
+
         /// <summary>
         /// Represents the Participant that is currently worked on by the application
         /// </summary>
         public String FilePath { get; set; }
+
         /// <summary>
         /// Represents the Participant that is currently worked on by the application
         /// </summary>
         public String CurrentParticipantID { get; set; }
-
-        /// <summary>
-        /// Represents all the Participant ID that are in the ParticipantsMap
-        /// </summary>
-        public List<String> ParticipantIDs { get; set; }
 
         /// <summary>
         /// Current page that the Participant is writing on
@@ -62,7 +55,6 @@ namespace Neosmartpen.Net.Metadata.Model
         public void NewParticipant(String participantID)
         {
             Participant participant = new Participant(participantID);
-            ParticipantIDs.Add(participantID);
             ParticipantsMap.Add(participantID, participant);
             CurrentParticipantID = participantID;
         }

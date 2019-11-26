@@ -4,18 +4,20 @@ using Neosmartpen.Net.Metadata.Model;
 
 namespace Neosmartpen.Net.Neosmartpen.Net.Export_Import
 {
-    public class CompressedParticipant
+    class CompressedParticipant
     {
         public CompressedParticipant(Participant participant) {
             Id = participant.Id;
+            List<Page> standin = participant.Pages;
             Pages = new List<CompressedPage>();
-            List<Page> pages = participant.Pages;
-            for (int i = 0; i < pages.Count; i++) {
-                Pages.Add(new CompressedPage(pages[i]));
+            for (int i = 0; i < standin.Count; i++)
+            {
+                Page temp = standin[i];
+                this.Pages.Add(new CompressedPage(temp));
             }
         }
         public String Id { get; set; }
 
-        List<CompressedPage> Pages { get; set; }
+        public List<CompressedPage> Pages { get; set; }
     }
 }

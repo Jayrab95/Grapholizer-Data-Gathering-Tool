@@ -383,6 +383,7 @@ namespace PenDemo
             this.session = session;
             labelParticipantIDInput.Text =  session.CurrentParticipantID;
             buttonNextParticipant.Enabled = true;
+            buttonExport.Enabled = true;
         }
 
         public void acceptParticipantChangedInput(String ParticipantID, int PageNum)

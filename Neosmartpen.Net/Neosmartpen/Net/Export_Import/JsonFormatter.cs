@@ -12,7 +12,9 @@ namespace Neosmartpen.Net.Neosmartpen.Net.Export_Import
             String dataJson = "";
             foreach (String k in ParticipantsMap.Keys)
             {
-               dataJson += JsonConvert.SerializeObject(new CompressedParticipant(ParticipantsMap[k]));
+               String json = JsonConvert.SerializeObject(new CompressedParticipant(ParticipantsMap[k]), Formatting.Indented);
+               Console.WriteLine(json);
+               dataJson += json;
             }
             return dataJson;
         }
