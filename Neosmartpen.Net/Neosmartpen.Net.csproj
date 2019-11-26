@@ -67,9 +67,7 @@
     <Compile Include="Neosmartpen\Net\Metadata\Model\Session.cs" />
     <Compile Include="Neosmartpen\Net\Metadata\Model\Participant.cs" />
     <Compile Include="Neosmartpen\Net\Export_Import\CompressedDot.cs" />
-    <Compile Include="Neosmartpen\Net\Export_Import\TimeMarker.cs" />
     <Compile Include="Neosmartpen\Net\Export_Import\CompressedPage.cs" />
-    <Compile Include="Neosmartpen\Net\Export_Import\Timeline.cs" />
     <Compile Include="Neosmartpen\Net\Export_Import\CompressedStroke.cs" />
     <Compile Include="Neosmartpen\Net\Export_Import\JsonFormatter.cs" />
     <Compile Include="Neosmartpen\Net\Bluetooth\BluetoothAdapter.cs" />
