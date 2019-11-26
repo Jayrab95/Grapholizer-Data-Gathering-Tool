@@ -15,7 +15,7 @@ namespace Neosmartpen.Net.Metadata.Model
         /// <summary>
         /// Only valid Constructor to guarantee correct inner state of Session
         /// </summary>
-        public Session(String CurrentParticipantID, String FilePath) {
+        public Session(String SessionID, String CurrentParticipantID, String FilePath) {
             this.FilePath = FilePath;
             this.CurrentPage = null;
             this.CurrentParticipantID = CurrentParticipantID;
@@ -30,6 +30,10 @@ namespace Neosmartpen.Net.Metadata.Model
         /// <summary>
         /// Represents the Participant that is currently worked on by the application
         /// </summary>
+        public String SessionID{ get; set; }
+        /// <summary>
+        /// Represents the Participant that is currently worked on by the application
+        /// </summary>
         public String FilePath { get; set; }
         /// <summary>
         /// Represents the Participant that is currently worked on by the application
@@ -37,7 +41,7 @@ namespace Neosmartpen.Net.Metadata.Model
         public String CurrentParticipantID { get; set; }
 
         /// <summary>
-        /// Represents all the Participant 
+        /// Represents all the Participant ID that are in the ParticipantsMap
         /// </summary>
         public List<String> ParticipantIDs { get; set; }
 
@@ -60,7 +64,6 @@ namespace Neosmartpen.Net.Metadata.Model
             Participant participant = new Participant(participantID);
             ParticipantIDs.Add(participantID);
             ParticipantsMap.Add(participantID, participant);
-            CurrentPage = null;
             CurrentParticipantID = participantID;
         }
 

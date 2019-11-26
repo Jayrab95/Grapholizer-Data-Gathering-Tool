@@ -47,7 +47,7 @@ namespace PenDemo
                 return;
             }
             Participant participant = new Participant(textBoxParticipantId.Text);
-            Session session = new Session(textBoxSessionId.Text, saveFileDialog.FileName);
+            Session session = new Session(textBoxSessionId.Text, textBoxParticipantId.Text, saveFileDialog.FileName);
             delPassData deleg = new delPassData(mainFormRef.acceptNewSessionFormInput);
             deleg(session);
             this.Close();

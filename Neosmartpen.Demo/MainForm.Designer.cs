@@ -86,6 +86,8 @@
             this.tbPrivateKeyFilePath = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.labelParticipantIDInput = new System.Windows.Forms.Label();
+            this.labelPageNumberInput = new System.Windows.Forms.Label();
             this.groupBoxExport.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -154,7 +156,7 @@
             // buttonNextParticipant
             // 
             this.buttonNextParticipant.Enabled = false;
-            this.buttonNextParticipant.Location = new System.Drawing.Point(172, 205);
+            this.buttonNextParticipant.Location = new System.Drawing.Point(172, 218);
             this.buttonNextParticipant.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonNextParticipant.Name = "buttonNextParticipant";
             this.buttonNextParticipant.Size = new System.Drawing.Size(140, 38);
@@ -184,6 +186,8 @@
             // 
             // groupBoxExport
             // 
+            this.groupBoxExport.Controls.Add(this.labelPageNumberInput);
+            this.groupBoxExport.Controls.Add(this.labelParticipantIDInput);
             this.groupBoxExport.Controls.Add(this.labelCurrentPageNum);
             this.groupBoxExport.Controls.Add(this.buttonpLastParticipant);
             this.groupBoxExport.Controls.Add(this.buttonNewSession);
@@ -192,6 +196,7 @@
             this.groupBoxExport.Controls.Add(this.buttonNextParticipant);
             this.groupBoxExport.Controls.Add(this.labelNewSession);
             this.groupBoxExport.Controls.Add(this.labelCurrentParticipant);
+            this.groupBoxExport.Enabled = false;
             this.groupBoxExport.Location = new System.Drawing.Point(381, 155);
             this.groupBoxExport.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.groupBoxExport.Name = "groupBoxExport";
@@ -200,7 +205,6 @@
             this.groupBoxExport.TabIndex = 26;
             this.groupBoxExport.TabStop = false;
             this.groupBoxExport.Text = "Participant Control";
-            this.groupBoxExport.Enabled = false;
             // 
             // labelCurrentPageNum
             // 
@@ -214,14 +218,14 @@
             // 
             // buttonpLastParticipant
             // 
-            this.buttonpLastParticipant.Enabled = false;
-            this.buttonpLastParticipant.Location = new System.Drawing.Point(14, 205);
+            this.buttonpLastParticipant.Location = new System.Drawing.Point(14, 218);
             this.buttonpLastParticipant.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonpLastParticipant.Name = "buttonpLastParticipant";
             this.buttonpLastParticipant.Size = new System.Drawing.Size(140, 38);
             this.buttonpLastParticipant.TabIndex = 24;
-            this.buttonpLastParticipant.Text = "Last Participant";
+            this.buttonpLastParticipant.Text = "Old Participant";
             this.buttonpLastParticipant.UseVisualStyleBackColor = true;
+            this.buttonpLastParticipant.Click += new System.EventHandler(this.buttonpLastParticipant_Click);
             // 
             // txtMacAddress
             // 
@@ -759,6 +763,28 @@
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "Authentication Parameter";
             // 
+            // labelParticipantIDInput
+            // 
+            this.labelParticipantIDInput.AutoSize = true;
+            this.labelParticipantIDInput.ForeColor = System.Drawing.SystemColors.ActiveBorder;
+            this.labelParticipantIDInput.Location = new System.Drawing.Point(188, 123);
+            this.labelParticipantIDInput.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelParticipantIDInput.Name = "labelParticipantIDInput";
+            this.labelParticipantIDInput.Size = new System.Drawing.Size(21, 20);
+            this.labelParticipantIDInput.TabIndex = 26;
+            this.labelParticipantIDInput.Text = "\"\"";
+            // 
+            // labelPageNumberInput
+            // 
+            this.labelPageNumberInput.AutoSize = true;
+            this.labelPageNumberInput.ForeColor = System.Drawing.SystemColors.ActiveBorder;
+            this.labelPageNumberInput.Location = new System.Drawing.Point(136, 160);
+            this.labelPageNumberInput.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelPageNumberInput.Name = "labelPageNumberInput";
+            this.labelPageNumberInput.Size = new System.Drawing.Size(21, 20);
+            this.labelPageNumberInput.TabIndex = 27;
+            this.labelPageNumberInput.Text = "\"\"";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -865,6 +891,8 @@
         private System.Windows.Forms.TextBox tbSerialNumber;
         private System.Windows.Forms.Button buttonpLastParticipant;
         private System.Windows.Forms.Label labelCurrentPageNum;
+        private System.Windows.Forms.Label labelParticipantIDInput;
+        private System.Windows.Forms.Label labelPageNumberInput;
     }
 }
 

@@ -291,10 +291,7 @@ namespace PenDemo
                 }
                 session.AddStrokeToParticipantPage(stroke);
                 InitImage();
-                foreach (Stroke s in session.CurrentPage.Strokes)
-                {
-                    DrawStroke(s);
-                }
+                DrawSession();
             }
             else
             {
@@ -316,6 +313,14 @@ namespace PenDemo
                     pictureBox1.Image = mBitmap;
                 }
             } ) );
+        }
+
+        private void DrawSession()
+        {
+            foreach (Stroke stroke in session.CurrentPage.Strokes)
+            {
+                DrawStroke(stroke);
+            }
         }
 
         private void lbDevices_SelectedIndexChanged( object sender, EventArgs e )
@@ -369,13 +374,26 @@ namespace PenDemo
         public void acceptNewParticipantInput(String participantId)
         {
             session.NewParticipant(participantId);
-            labelCurrentParticipant.Text = "Current Participant ID:: " + participantId;
+            labelParticipantIDInput.Text =  participantId;
+            InitImage();
+            DrawSession();
         }
 
         public void acceptNewSessionFormInput(Session session) {
             this.session = session;
-            labelCurrentParticipant.Text = "Current Participant ID:: " + session.CurrentParticipantID;
+            labelParticipantIDInput.Text =  session.CurrentParticipantID;
             buttonNextParticipant.Enabled = true;
+        }
+
+        public void acceptParticipantChangedInput(String ParticipantID, int PageNum)
+        {
+            Console.WriteLine("callback works");
+            session.ChangeParticipant(ParticipantID);
+            session.ChangePage(session.GetPageIndex(PageNum));
+            labelParticipantIDInput.Text = session.CurrentParticipantID;
+            labelPageNumberInput.Text = "" + session.CurrentPage.Number;
+            InitImage();
+            DrawSession();
         }
 
         private void Form1_FormClosed( object sender, FormClosedEventArgs e )
@@ -611,6 +629,7 @@ namespace PenDemo
         {
             foreach ( Stroke stroke in strokes )
             {
+                //TODO ProcessDot()
                 DrawStroke( stroke );
             }
         }
@@ -1071,6 +1090,12 @@ namespace PenDemo
             );
         }
 
+        private void buttonpLastParticipant_Click(object sender, EventArgs e)
+        {
+            SessionSelectionForm sessSelectForm = new SessionSelectionForm(this, session);
+            sessSelectForm.Show();
+        }
+
         private void btnSelectPrivateKey_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -1092,4 +1117,5 @@ namespace PenDemo
         }
         #endregion
     }
+
 }
