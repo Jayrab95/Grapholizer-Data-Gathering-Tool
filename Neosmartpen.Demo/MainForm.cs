@@ -275,7 +275,7 @@ namespace PenDemo
             if (session.CurrentPage == null)
             {
                 session.NewPage(page);
-                labelPageNumberInput.Text = page.Number.ToString();
+                //labelPageNumberInput.Text = "" + page.Number;
             }
             if (session.CurrentPage.Number != page.Number)
             { 
@@ -287,7 +287,7 @@ namespace PenDemo
                 {
                     session.NewPage(page);
                 }
-                labelPageNumberInput.Text = page.Number.ToString();
+                //labelPageNumberInput.Text = "" + page.Number;
                 session.AddStrokeToParticipantPage(stroke);
                 InitImage();
                 DrawSession();
@@ -316,9 +316,12 @@ namespace PenDemo
 
         private void DrawSession()
         {
-            foreach (Stroke stroke in session.CurrentPage.Strokes)
+            if (session.CurrentPage != null)
             {
-                DrawStroke(stroke);
+                foreach (Stroke stroke in session.CurrentPage.Strokes)
+                {
+                    DrawStroke(stroke);
+                }
             }
         }
 
@@ -356,6 +359,8 @@ namespace PenDemo
                 session.SaveSessionToFile();
                 session = null;
                 buttonNewSession.Text = "New Session";
+                labelPageNumberInput.Text = "";
+                labelParticipantIDInput.Text = "";
             }
         }
 

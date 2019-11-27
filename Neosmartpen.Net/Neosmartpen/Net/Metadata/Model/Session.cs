@@ -57,6 +57,7 @@ namespace Neosmartpen.Net.Metadata.Model
             Participant participant = new Participant(participantID);
             ParticipantsMap.Add(participantID, participant);
             CurrentParticipantID = participantID;
+            CurrentPage = null;
         }
 
         /// <summary>
