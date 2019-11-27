@@ -12,6 +12,7 @@ namespace Neosmartpen.Net.Neosmartpen.Net.Export_Import
             Fx = dot.Fx;
             Y = dot.Y;
             Fy = dot.Fy;
+            Twist = dot.Twist;
             TiltX = dot.TiltX;
             TiltY = dot.TiltY;
             Force = dot.Force;
@@ -29,6 +30,8 @@ namespace Neosmartpen.Net.Neosmartpen.Net.Export_Import
         public int TiltX { get; set; }
 
         public int TiltY { get; set; }
+
+        public int Twist { get; set; }
 
         public int Force { get; set; }
 

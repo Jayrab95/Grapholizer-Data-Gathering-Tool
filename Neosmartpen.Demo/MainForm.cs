@@ -46,6 +46,11 @@ namespace PenDemo
 
         private IMetadataManager mMetadataManager;
 
+        public enum DotTypes
+        {
+            PEN_DOWN, PEN_MOVE, PEN_UP, PEN_HOVER, PEN_ERROR
+        };
+
         private Session session { get; set; }
 
     public delegate void RequestDele();
@@ -53,7 +58,6 @@ namespace PenDemo
         public MainForm()
         {
             InitializeComponent();
-
             mBtAdt = new BluetoothAdapter();
 
             // Create MetadataManager
@@ -260,7 +264,7 @@ namespace PenDemo
             }
             else
             {
-                //Console.WriteLine(dot.ToString());
+                Console.WriteLine(dot.ToString());
             }
         }
 
