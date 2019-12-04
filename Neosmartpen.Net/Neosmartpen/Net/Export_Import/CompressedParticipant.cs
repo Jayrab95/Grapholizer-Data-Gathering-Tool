@@ -6,14 +6,14 @@ namespace Neosmartpen.Net.Neosmartpen.Net.Export_Import
 {
     class CompressedParticipant
     {
-        public CompressedParticipant(Participant participant) {
+        public CompressedParticipant(Participant participant, int maxForce) {
             Id = participant.Id;
             List<Page> standin = participant.Pages;
             Pages = new List<CompressedPage>();
             for (int i = 0; i < standin.Count; i++)
             {
                 Page temp = standin[i];
-                this.Pages.Add(new CompressedPage(temp));
+                this.Pages.Add(new CompressedPage(temp, maxForce));
             }
         }
         public String Id { get; set; }

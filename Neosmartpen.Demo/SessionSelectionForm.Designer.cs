@@ -30,8 +30,10 @@
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.ListBoxParticipantID = new System.Windows.Forms.ListBox();
+            this.buttonDelete = new System.Windows.Forms.Button();
             this.listBoxPageNumber = new System.Windows.Forms.ListBox();
             this.buttonAccept = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -51,6 +53,8 @@
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.button1);
+            this.splitContainer1.Panel2.Controls.Add(this.buttonDelete);
             this.splitContainer1.Panel2.Controls.Add(this.listBoxPageNumber);
             this.splitContainer1.Panel2.Controls.Add(this.buttonAccept);
             this.splitContainer1.Size = new System.Drawing.Size(800, 272);
@@ -67,6 +71,16 @@
             this.ListBoxParticipantID.TabIndex = 0;
             this.ListBoxParticipantID.SelectedIndexChanged += new System.EventHandler(this.ListBoxSessionID_SelectedIndexChanged);
             // 
+            // buttonDelete
+            // 
+            this.buttonDelete.Location = new System.Drawing.Point(242, 33);
+            this.buttonDelete.Name = "buttonDelete";
+            this.buttonDelete.Size = new System.Drawing.Size(126, 60);
+            this.buttonDelete.TabIndex = 2;
+            this.buttonDelete.Text = "Delete Page";
+            this.buttonDelete.UseVisualStyleBackColor = true;
+            this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
+            // 
             // listBoxPageNumber
             // 
             this.listBoxPageNumber.FormattingEnabled = true;
@@ -79,13 +93,23 @@
             // 
             // buttonAccept
             // 
-            this.buttonAccept.Location = new System.Drawing.Point(235, 100);
+            this.buttonAccept.Location = new System.Drawing.Point(242, 185);
             this.buttonAccept.Name = "buttonAccept";
             this.buttonAccept.Size = new System.Drawing.Size(126, 60);
             this.buttonAccept.TabIndex = 0;
             this.buttonAccept.Text = "Accept";
             this.buttonAccept.UseVisualStyleBackColor = true;
             this.buttonAccept.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(242, 110);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(126, 60);
+            this.button1.TabIndex = 3;
+            this.button1.Text = "Delete Participant";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // SessionSelectionForm
             // 
@@ -109,5 +133,7 @@
         private System.Windows.Forms.ListBox ListBoxParticipantID;
         private System.Windows.Forms.Button buttonAccept;
         private System.Windows.Forms.ListBox listBoxPageNumber;
+        private System.Windows.Forms.Button buttonDelete;
+        private System.Windows.Forms.Button button1;
     }
 }

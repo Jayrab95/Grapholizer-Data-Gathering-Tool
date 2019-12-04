@@ -13,7 +13,6 @@ using System.Drawing;
 using System.IO;
 using System.Threading;
 using System.Windows.Forms;
-using Neosmartpen.Net.Neosmartpen.Net.Export_Import;
 
 namespace PenDemo
 {
@@ -46,10 +45,7 @@ namespace PenDemo
 
         private IMetadataManager mMetadataManager;
 
-        public enum DotTypes
-        {
-            PEN_DOWN, PEN_MOVE, PEN_UP, PEN_HOVER, PEN_ERROR
-        };
+        private int maxForce;
 
         private Session session { get; set; }
 
@@ -262,10 +258,6 @@ namespace PenDemo
                 DrawStroke(mStroke);
                 mFilter.Reset();
             }
-            else
-            {
-                Console.WriteLine(dot.ToString());
-            }
         }
 
         private void ProcessStroke(Stroke stroke)
@@ -356,7 +348,7 @@ namespace PenDemo
             if (session == null)
             {
                 buttonNewSession.Text = "Stop Session";
-                NewSessionForm sessForm = new NewSessionForm(this);
+                NewSessionForm sessForm = new NewSessionForm(this, maxForce);
                 sessForm.Show();
             }
             else {
@@ -388,7 +380,18 @@ namespace PenDemo
             DrawSession();
         }
 
-        public void acceptNewSessionFormInput(Session session) {
+        public void acceptParticipantDeleteRequest(String participantID)
+        {
+            session.DeleteParticipant(participantID);
+        }
+
+        public void acceptPageDeleteRequest(String participantID, int pageNumber)
+        {
+            session.DeletePage(participantID, pageNumber);
+        }
+
+        public void acceptNewSessionFormInput(Session session)
+        {
             this.session = session;
             labelParticipantIDInput.Text =  session.CurrentParticipantID;
             buttonNextParticipant.Enabled = true;
@@ -420,6 +423,8 @@ namespace PenDemo
         #region PenCommV1Callbacks
         void PenCommV1Callbacks.onConnected( IPenComm sender, int maxForce, string swVersion )
         {
+            Console.WriteLine("New ForceMAX::: " + maxForce);
+            this.maxForce = maxForce;
             mFilter = new PressureFilter( maxForce );
 
             this.BeginInvoke( new MethodInvoker( delegate()
@@ -488,7 +493,6 @@ namespace PenDemo
             {
                 nmPowerOffTime.Value = autoshutdownTime;
                 cbBeep.Checked = beep;
-
                 cbOfflineData.Checked = false;
                 cbOfflineData.Enabled = false;
                 cbPenCapPower.Checked = false;
@@ -639,7 +643,7 @@ namespace PenDemo
         {
             foreach ( Stroke stroke in strokes )
             {
-                //TODO ProcessDot()
+                ProcessStroke(stroke);
                 DrawStroke( stroke );
             }
         }
@@ -659,7 +663,7 @@ namespace PenDemo
         void PenCommV2Callbacks.onConnected( IPenComm sender, string macAddress, string deviceName, string fwVersion, string protocolVersion, string subName, int maxForce )
         {
             mFilter = new PressureFilter( maxForce );
-
+            this.maxForce = maxForce;
             this.BeginInvoke( new MethodInvoker( delegate()
             {
                 btnConnect.Text = "Disconnect";

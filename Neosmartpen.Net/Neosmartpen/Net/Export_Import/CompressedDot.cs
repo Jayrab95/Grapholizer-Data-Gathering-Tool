@@ -7,7 +7,7 @@ namespace Neosmartpen.Net.Neosmartpen.Net.Export_Import
 {
     class CompressedDot
     {
-        public CompressedDot(Dot dot, byte timeDiff) {
+        public CompressedDot(Dot dot, byte timeDiff, int maxForce) {
             X = dot.X;
             Fx = dot.Fx;
             Y = dot.Y;
@@ -15,7 +15,10 @@ namespace Neosmartpen.Net.Neosmartpen.Net.Export_Import
             Twist = dot.Twist;
             TiltX = dot.TiltX;
             TiltY = dot.TiltY;
-            Force = dot.Force;
+            Console.WriteLine("dotForce:: " + dot.Force + " maxForce:: " + maxForce);
+            Console.WriteLine("dotForce Float:: " + (float)dot.Force + " maxForce Float:: " + (float)maxForce);
+            this.Force = (float)dot.Force / (float)maxForce;
+            Console.WriteLine("calcForce:: " + Force);
             DotType = (int) dot.DotType;
             TimeDiff = timeDiff;
         }
@@ -33,7 +36,10 @@ namespace Neosmartpen.Net.Neosmartpen.Net.Export_Import
 
         public int Twist { get; set; }
 
-        public int Force { get; set; }
+        /// <summary>
+        /// Force that is applied to the pen while writing (is always a value between (0 - 1))
+        /// </summary>
+        public float Force { get; set; }
 
         public int DotType { get; set; }
 

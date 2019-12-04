@@ -13,10 +13,11 @@ namespace Neosmartpen.Net.Metadata.Model
         /// <summary>
         /// Only valid Constructor to guarantee correct inner state of Session
         /// </summary>
-        public Session(String SessionID, String CurrentParticipantID, String FilePath) {
+        public Session(String SessionID, String CurrentParticipantID, String FilePath, int maxForce) {
             this.FilePath = FilePath;
             this.CurrentPage = null;
             this.CurrentParticipantID = CurrentParticipantID;
+            this.maxForce = maxForce;
 
             Participant participant = new Participant(CurrentParticipantID);
             ParticipantsMap = new Dictionary<string, Participant>();
@@ -47,6 +48,11 @@ namespace Neosmartpen.Net.Metadata.Model
         /// All data that has been created in this Session 
         /// </summary>
         public Dictionary<String, Participant> ParticipantsMap { get; }
+
+        /// <summary>
+        /// Maximum Force that can be applied to the pen (needed for data export)
+        /// </summary>
+        private int maxForce { get; }
 
         /// <summary>
         /// Changes Participant and therefore the inner state of the Session
@@ -93,6 +99,25 @@ namespace Neosmartpen.Net.Metadata.Model
             CurrentPage = newPage;
         }
 
+        public void DeletePage(String participantID,int pageNum)
+        {
+            List<Page> pages = ParticipantsMap[participantID].Pages;
+            for (int i = 0; i < pages.Count; i++)
+            {
+                if (pages[i].Number == pageNum)
+                {
+                    ParticipantsMap[participantID].Pages.RemoveAt(i);
+                    break;
+                }
+            }
+            
+        }
+
+        public void DeleteParticipant(String participantID)
+        {
+            ParticipantsMap.Remove(participantID);
+        }
+
         public Page GetPage(int pageNumber)
         {
             List<Page> pages = ParticipantsMap[CurrentParticipantID].Pages;
@@ -117,7 +142,7 @@ namespace Neosmartpen.Net.Metadata.Model
         public bool SaveSessionToFile()
         { 
             String data = "";
-            data = JsonFormatter.Format(ParticipantsMap);
+            data = JsonFormatter.Format(ParticipantsMap, maxForce);
             File.WriteAllText(FilePath, data);
             return true;
         }

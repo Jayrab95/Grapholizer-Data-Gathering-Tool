@@ -9,11 +9,11 @@ namespace Neosmartpen.Net.Neosmartpen.Net.Export_Import
         ///<summary>
         ///Serializes the given ParticipantsMap into a json object
         ///</summary>
-        public static String Format(System.Collections.Generic.Dictionary<String, Participant> ParticipantsMap) {
+        public static String Format(System.Collections.Generic.Dictionary<String, Participant> ParticipantsMap, int maxForce) {
             List<CompressedParticipant> comParticipants = new List<CompressedParticipant>();
             foreach (String k in ParticipantsMap.Keys)
             {
-               comParticipants.Add(new CompressedParticipant(ParticipantsMap[k]));
+               comParticipants.Add(new CompressedParticipant(ParticipantsMap[k], maxForce));
             }
             return JsonConvert.SerializeObject(comParticipants, Formatting.Indented); ;
         }

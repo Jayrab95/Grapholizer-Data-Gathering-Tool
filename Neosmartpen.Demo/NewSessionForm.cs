@@ -11,9 +11,11 @@ namespace PenDemo
         String FilePath;
         MainForm mainFormRef;
         Page currentPage;
-        public NewSessionForm(MainForm mainFormRef)
+        int maxForce;
+        public NewSessionForm(MainForm mainFormRef, int maxForce)
         {
             this.mainFormRef = mainFormRef;
+            this.maxForce = maxForce;
             InitializeComponent();
         }
 
@@ -42,7 +44,7 @@ namespace PenDemo
                 return;
             }
             Participant participant = new Participant(textBoxParticipantId.Text);
-            Session session = new Session(textBoxSessionId.Text, textBoxParticipantId.Text, saveFileDialog.FileName);
+            Session session = new Session(textBoxSessionId.Text, textBoxParticipantId.Text, saveFileDialog.FileName, maxForce);
             delPassData deleg = new delPassData(mainFormRef.acceptNewSessionFormInput);
             deleg(session);
             this.Close();

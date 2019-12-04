@@ -17,6 +17,9 @@ namespace PenDemo
         String SelectedParticipantID = null;
         int SelectedPageNum = -1;
         public delegate void delPassData(String ParticipantID, int pageNumber);
+        public delegate void delDeletePage(String ParticipantID, int pageNumber);
+        public delegate void delDeleteParticipant(String ParticipantID);
+
         public SessionSelectionForm(MainForm MainformRef, Session session)
         {
             this.MainFormRef = MainformRef;
@@ -31,16 +34,31 @@ namespace PenDemo
 
         private void ListBoxSessionID_SelectedIndexChanged(object sender, EventArgs e)
         {
-            SelectedParticipantID = (String) ListBoxParticipantID.SelectedItem;
-            //After every selected participant clean old entries in list and load the new pageNumbers
-            listBoxPageNumber.Items.Clear();
-            foreach (Page page in session.ParticipantsMap[SelectedParticipantID].Pages) {
-                listBoxPageNumber.Items.Add(page.Number);
+            if (ListBoxParticipantID.SelectedItem == null)
+            {
+                SelectedParticipantID = null;
+            }
+            else
+            {
+                SelectedParticipantID = (String)ListBoxParticipantID.SelectedItem;
+                //After every selected participant clean old entries in list and load the new pageNumbers
+                listBoxPageNumber.Items.Clear();
+                foreach (Page page in session.ParticipantsMap[SelectedParticipantID].Pages)
+                {
+                    listBoxPageNumber.Items.Add(page.Number);
+                }
             }
         }
         private void listBoxPageNumber_SelectedIndexChanged(object sender, EventArgs e)
         {
-            SelectedPageNum = (int) listBoxPageNumber.SelectedItem;
+            if (listBoxPageNumber.SelectedItem == null)
+            {
+                SelectedPageNum = -1;
+            }
+            else
+            {
+                SelectedPageNum = (int)listBoxPageNumber.SelectedItem;
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -54,6 +72,29 @@ namespace PenDemo
             else
             {
                 //TODO(lukas) Error no element selected
+            }
+        }
+
+        private void buttonDelete_Click(object sender, EventArgs e)
+        {
+            if (SelectedPageNum != -1 && listBoxPageNumber.Items.Count > 1)
+            {
+                delDeletePage delPage = new delDeletePage(MainFormRef.acceptPageDeleteRequest);
+                delPage(SelectedParticipantID, SelectedPageNum);
+                listBoxPageNumber.Items.Remove(SelectedPageNum);
+            }
+            else {
+                //TODO(lukas) Error no element selected or list has only one element
+            }
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            if (SelectedParticipantID != null && ListBoxParticipantID.Items.Count > 1)
+            {
+                delDeleteParticipant delParticipant = new delDeleteParticipant(MainFormRef.acceptParticipantDeleteRequest);
+                delParticipant(SelectedParticipantID);
+                ListBoxParticipantID.Items.Remove(SelectedParticipantID);
             }
         }
     }
