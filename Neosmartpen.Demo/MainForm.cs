@@ -729,6 +729,7 @@ namespace PenDemo
         {
             foreach ( Stroke stroke in strokes )
             {
+                ProcessStroke(stroke);
                 DrawStroke( stroke );
             }
             DisplayProgress( ProgressTitleOffline, total, progress );
@@ -1109,6 +1110,7 @@ namespace PenDemo
             SessionSelectionForm sessSelectForm = new SessionSelectionForm(this, session);
             sessSelectForm.Show();
         }
+
 
         private void btnSelectPrivateKey_Click(object sender, EventArgs e)
         {
