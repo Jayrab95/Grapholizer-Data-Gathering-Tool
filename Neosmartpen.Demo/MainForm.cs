@@ -196,7 +196,6 @@ namespace PenDemo
                 }
 
                 btnConnect.Enabled = false;
-                groupBoxExport.Enabled = true;
                 Thread thread = new Thread(unused =>
                {
                 // Binds a socket created by connecting with pen through Bluetooth interface according to Device Class
@@ -223,8 +222,9 @@ namespace PenDemo
                           groupBoxExport.Enabled = false;
                       }));
                    }
+                   groupBoxExport.Enabled = true;
                });
-
+               
                 thread.IsBackground = true;
                 thread.Start();
             }

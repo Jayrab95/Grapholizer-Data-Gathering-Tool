@@ -784,6 +784,7 @@
             this.groupBox8.TabIndex = 26;
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "Authentication Parameter";
+            this.groupBox8.Enabled = false;
             // 
             // MainForm
             // 
