@@ -357,6 +357,7 @@ namespace PenDemo
                 buttonNewSession.Text = "New Session";
                 labelPageNumberInput.Text = "";
                 labelParticipantIDInput.Text = "";
+                groupBox8.Enabled = false;
             }
         }
 
