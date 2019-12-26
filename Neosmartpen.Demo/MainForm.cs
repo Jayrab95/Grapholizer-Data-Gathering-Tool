@@ -274,7 +274,7 @@ namespace PenDemo
             if (session.CurrentPage == null)
             {
                 session.NewPage(page);
-                    //labelPageNumberInput.Text = "" + page.Number;
+                //labelPageNumberInput.Text = "" + page.Number;
             }
             if (session.CurrentPage.Number != page.Number)
             {
@@ -348,6 +348,7 @@ namespace PenDemo
         }
         private void buttonNewSession_Click(object sender, EventArgs e)
         {
+            ToggleSessionButtons();
             if (session == null)
             {
                 buttonNewSession.Text = "Stop Session";
@@ -360,8 +361,14 @@ namespace PenDemo
                 buttonNewSession.Text = "New Session";
                 labelPageNumberInput.Text = "";
                 labelParticipantIDInput.Text = "";
-                groupBox8.Enabled = false;
             }
+        }
+
+        private void ToggleSessionButtons() {
+            bool toggle = buttonNextParticipant.Enabled;
+            buttonNextParticipant.Enabled = !toggle;
+            buttonpLastParticipant.Enabled = !toggle;
+            buttonExport.Enabled = !toggle;
         }
 
         private void buttonExport_Click(object sender, EventArgs e) {
@@ -407,10 +414,9 @@ namespace PenDemo
             buttonNextParticipant.Enabled = true;
             buttonExport.Enabled = true;
         }
-
+        
         public void acceptParticipantChangedInput(String ParticipantID, int PageNum)
         {
-            Console.WriteLine("callback works");
             session.ChangeParticipant(ParticipantID);
             session.ChangePage(session.GetPageIndex(PageNum));
             labelParticipantIDInput.Text = session.CurrentParticipantID;
@@ -433,7 +439,6 @@ namespace PenDemo
         #region PenCommV1Callbacks
         void PenCommV1Callbacks.onConnected( IPenComm sender, int maxForce, string swVersion )
         {
-            Console.WriteLine("New ForceMAX::: " + maxForce);
             this.maxForce = maxForce;
             mFilter = new PressureFilter( maxForce );
 
