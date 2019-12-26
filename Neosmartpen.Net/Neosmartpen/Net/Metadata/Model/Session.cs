@@ -58,12 +58,19 @@ namespace Neosmartpen.Net.Metadata.Model
         /// Changes Participant and therefore the inner state of the Session
         /// All new Pages and Strokes will be written to this new Participant-Object
         /// </summary>
-        public void NewParticipant(String participantID)
+        public bool NewParticipant(String participantID)
         {
-            Participant participant = new Participant(participantID);
-            ParticipantsMap.Add(participantID, participant);
-            CurrentParticipantID = participantID;
-            CurrentPage = null;
+            try
+            {
+                Participant participant = new Participant(participantID);
+                ParticipantsMap.Add(participantID, participant);
+                CurrentParticipantID = participantID;
+                CurrentPage = null;
+                return true;
+            }
+            catch (Exception e) {
+                return false;
+            }
         }
 
         /// <summary>

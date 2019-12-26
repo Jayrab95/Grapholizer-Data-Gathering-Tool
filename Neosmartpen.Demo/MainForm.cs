@@ -378,10 +378,16 @@ namespace PenDemo
 
         public void acceptNewParticipantInput(String participantId)
         {
-            session.NewParticipant(participantId);
-            labelParticipantIDInput.Text =  participantId;
-            InitImage();
-            DrawSession();
+            bool hasWorked = session.NewParticipant(participantId);
+            if (hasWorked)
+            {
+                labelParticipantIDInput.Text = participantId;
+                InitImage();
+                DrawSession();
+            }
+            else {
+                MessageBox.Show("This ID is already in use, choose another name or delete the old one");
+            }
         }
 
         public void acceptParticipantDeleteRequest(String participantID)
