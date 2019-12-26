@@ -216,17 +216,16 @@ namespace PenDemo
                    {
                        MessageBox.Show("Fail to connect");
 
-                      this.BeginInvoke(new MethodInvoker(delegate ()
-                      {
-                          btnConnect.Enabled = true;
-                          groupBoxExport.Enabled = false;
-                      }));
+                       this.BeginInvoke(new MethodInvoker(delegate ()
+                       {
+                           btnConnect.Enabled = true;
+                       }));
                    }
-                   groupBoxExport.Enabled = true;
                });
-               
                 thread.IsBackground = true;
                 thread.Start();
+                thread.Join();
+                groupBoxExport.Enabled = true;
             }
             else
             {
@@ -234,8 +233,8 @@ namespace PenDemo
                 {
                     btnConnect.Text = "Connect";
                     btnConnect.Enabled = true;
-                    groupBoxExport.Enabled = false;
                 }
+                groupBoxExport.Enabled = false;
             }
         }
 
