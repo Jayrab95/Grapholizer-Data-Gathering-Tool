@@ -240,22 +240,25 @@ namespace PenDemo
 
         private void ProcessDot(Dot dot)
         {
-            dot.Force = mFilter.Filter(dot.Force);
-            if (dot.DotType == DotTypes.PEN_DOWN)
+            if (session != null)
             {
-                mStroke = new Stroke(dot.Section, dot.Owner, dot.Note, dot.Page);
-                mStroke.Add(dot);
-            }
-            else if (dot.DotType == DotTypes.PEN_MOVE)
-            {
-                mStroke.Add(dot);
-            }
-            else if (dot.DotType == DotTypes.PEN_UP)
-            {
-                mStroke.Add(dot);
-                ProcessStroke(mStroke);
-                DrawStroke(mStroke);
-                mFilter.Reset();
+                dot.Force = mFilter.Filter(dot.Force);
+                if (dot.DotType == DotTypes.PEN_DOWN)
+                {
+                    mStroke = new Stroke(dot.Section, dot.Owner, dot.Note, dot.Page);
+                    mStroke.Add(dot);
+                }
+                else if (dot.DotType == DotTypes.PEN_MOVE)
+                {
+                    mStroke.Add(dot);
+                }
+                else if (dot.DotType == DotTypes.PEN_UP)
+                {
+                    mStroke.Add(dot);
+                    ProcessStroke(mStroke);
+                    DrawStroke(mStroke);
+                    mFilter.Reset();
+                }
             }
         }
 
@@ -267,13 +270,14 @@ namespace PenDemo
             page.Owner = stroke.Owner;
             page.Section = stroke.Section;
             //Check if this is the first page this participant writes on
+
             if (session.CurrentPage == null)
             {
                 session.NewPage(page);
-                //labelPageNumberInput.Text = "" + page.Number;
+                    //labelPageNumberInput.Text = "" + page.Number;
             }
             if (session.CurrentPage.Number != page.Number)
-            { 
+            {
                 if (session.GetPage(page.Number) != null)
                 {
                     session.ChangePage(session.GetPageIndex(page.Number));
