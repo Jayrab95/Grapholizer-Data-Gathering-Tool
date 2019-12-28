@@ -6,7 +6,7 @@ using Neosmartpen.Net.Metadata.Model;
 
 namespace Neosmartpen.Net.Neosmartpen.Net.Export_Import
 {
-    class CompressedStroke
+    public class CompressedStroke
     {
         public CompressedStroke(Stroke stroke, int maxForce) {
             long lastTimeStamp = stroke.TimeStart;

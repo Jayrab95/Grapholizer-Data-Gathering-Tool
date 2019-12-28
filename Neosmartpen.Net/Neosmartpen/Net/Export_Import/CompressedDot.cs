@@ -5,8 +5,11 @@ using System.Text;
 
 namespace Neosmartpen.Net.Neosmartpen.Net.Export_Import
 {
-    class CompressedDot
+    public class CompressedDot
     {
+        /// <summary>
+        /// Builds a Compressed Dot for Data Export with less Metadata
+        /// </summary>
         public CompressedDot(Dot dot, byte timeDiff, int maxForce) {
             X = dot.X;
             Fx = dot.Fx;
@@ -15,10 +18,7 @@ namespace Neosmartpen.Net.Neosmartpen.Net.Export_Import
             Twist = dot.Twist;
             TiltX = dot.TiltX;
             TiltY = dot.TiltY;
-            Console.WriteLine("dotForce:: " + dot.Force + " maxForce:: " + maxForce);
-            Console.WriteLine("dotForce Float:: " + (float)dot.Force + " maxForce Float:: " + (float)maxForce);
             this.Force = (float)dot.Force / (float)maxForce;
-            Console.WriteLine("calcForce:: " + Force);
             DotType = (int) dot.DotType;
             TimeDiff = timeDiff;
         }

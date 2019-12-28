@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Neosmartpen.Net.Neosmartpen.Net.Export_Import;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -59,6 +60,22 @@ namespace Neosmartpen.Net
             Owner = owner;
             Note = note;
             Page = page;
+        }
+
+
+        public Stroke(CompressedStroke cStroke, int maxForce) {
+            this.TimeStart = cStroke.TimeStart;
+            this.TimeEnd = cStroke.TimeEnd;
+
+            if (cStroke.CompressedDots != null) {
+                if (cStroke.CompressedDots.Count > 0) {
+                    long lastTimeStamp = 0;
+                    foreach (CompressedDot cDot in cStroke.CompressedDots) {
+                        lastTimeStamp += cDot.TimeDiff;
+                        this.Add(new Dot(cDot, lastTimeStamp, maxForce));
+                    }
+                }
+            }
         }
 
         /// <summary>

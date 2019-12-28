@@ -143,6 +143,7 @@ namespace Neosmartpen.Net.Metadata.Model
             }
             return -1;
         }
+
         /// <summary>
         /// Save the data structur to the file at FilePath
         /// </summary>
@@ -151,6 +152,16 @@ namespace Neosmartpen.Net.Metadata.Model
             String data = "";
             data = JsonFormatter.Format(ParticipantsMap, maxForce);
             File.WriteAllText(FilePath, data);
+            return true;
+        }
+
+        /// <summary>
+        /// Load data from file path into internal data structure
+        /// </summary>
+        public bool LoadSessionFromFile(String filePath) {
+            String content = File.ReadAllText(filePath);
+            if (content == null) return false;
+
             return true;
         }
 

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Neosmartpen.Net.Neosmartpen.Net.Export_Import;
+using System.Collections.Generic;
 
 namespace Neosmartpen.Net.Metadata.Model
 {
@@ -10,6 +11,33 @@ namespace Neosmartpen.Net.Metadata.Model
 
         public Page() {
             Strokes = new List<Stroke>();
+        }
+
+        public Page(CompressedPage cPage, int maxForce) {
+            this.Owner = cPage.Owner;
+            this.Book = cPage.Book;
+            this.Section = cPage.Section;
+            this.Number = cPage.Number;
+            this.MarginR = cPage.MarginR;
+            this.MarginL = cPage.MarginL;
+            this.MarginB = cPage.MarginB;
+            this.MarginT = cPage.MarginT;
+            this.X1 = cPage.X1;
+            this.X2 = cPage.X2;
+            this.Y1 = cPage.Y1;
+            this.Y2 = cPage.Y2;
+
+            Strokes = new List<Stroke>();
+            if (cPage.Strokes != null)
+            {
+                if (cPage.Strokes.Count > 0)
+                {
+                    foreach (CompressedStroke cStroke in cPage.Strokes)
+                    {
+                        this.Strokes.Add(new Stroke(cStroke));
+                    }
+                }
+            }
         }
         /// <summary>
         /// Section

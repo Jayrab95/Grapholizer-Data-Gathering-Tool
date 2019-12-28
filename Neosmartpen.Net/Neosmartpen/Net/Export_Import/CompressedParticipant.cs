@@ -4,7 +4,7 @@ using Neosmartpen.Net.Metadata.Model;
 
 namespace Neosmartpen.Net.Neosmartpen.Net.Export_Import
 {
-    class CompressedParticipant
+    public class CompressedParticipant
     {
         public CompressedParticipant(Participant participant, int maxForce) {
             Id = participant.Id;

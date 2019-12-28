@@ -7,7 +7,7 @@ using Neosmartpen.Net.Metadata.Model;
 
 namespace Neosmartpen.Net.Neosmartpen.Net.Export_Import
 {
-    class CompressedPage
+    public class CompressedPage
     {
         public CompressedPage(Page page, int maxForce) {
             Section = page.Section;

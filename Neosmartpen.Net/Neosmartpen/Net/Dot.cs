@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Neosmartpen.Net.Neosmartpen.Net.Export_Import;
+using System;
 
 namespace Neosmartpen.Net
 { 
@@ -154,6 +155,32 @@ namespace Neosmartpen.Net
             TiltX = tiltX;
             TiltY = tiltY;
             Twist = twist;
+        }
+
+        public Dot(CompressedDot cDot, long timeStamp, int maxForce) {
+            switch (cDot.DotType) {
+                case 0:
+                    this.DotType = DotTypes.PEN_DOWN;
+                    break;
+                case 1:
+                    this.DotType = DotTypes.PEN_MOVE;
+                    break;
+                case 2:
+                    this.DotType = DotTypes.PEN_UP;
+                    break;
+                case 3:
+                    this.DotType = DotTypes.PEN_HOVER;
+                    break;
+                case 4:
+                    this.DotType = DotTypes.PEN_ERROR;
+                    break;
+            }
+            this.Force = (int) cDot.Force * maxForce;
+            this.Fx = cDot.Fx;
+            this.Fy = cDot.Fy;
+            this.Timestamp = timeStamp;
+            this.TiltX = cDot.TiltX;
+            this.TiltY = cDot.TiltY;
         }
 
 		public Dot Clone()
