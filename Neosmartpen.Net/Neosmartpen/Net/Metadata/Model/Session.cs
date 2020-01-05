@@ -47,7 +47,7 @@ namespace Neosmartpen.Net.Metadata.Model
         /// <summary>
         /// All data that has been created in this Session 
         /// </summary>
-        public Dictionary<String, Participant> ParticipantsMap { get; }
+        public Dictionary<String, Participant> ParticipantsMap { get; set; }
 
         /// <summary>
         /// Maximum Force that can be applied to the pen (needed for data export)
@@ -161,7 +161,10 @@ namespace Neosmartpen.Net.Metadata.Model
         public bool LoadSessionFromFile(String filePath) {
             String content = File.ReadAllText(filePath);
             if (content == null) return false;
-
+            ParticipantsMap = JsonFormatter.Deformat(content, maxForce);
+            //CurrentParticipantID = ParticipantsMap;
+            //CurrentPage
+          
             return true;
         }
 

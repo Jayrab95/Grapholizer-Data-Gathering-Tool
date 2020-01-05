@@ -34,7 +34,7 @@ namespace Neosmartpen.Net.Metadata.Model
                 {
                     foreach (CompressedStroke cStroke in cPage.Strokes)
                     {
-                        this.Strokes.Add(new Stroke(cStroke));
+                        this.Strokes.Add(new Stroke(cStroke,maxForce));
                     }
                 }
             }
