@@ -9,7 +9,9 @@ namespace Neosmartpen.Net.Neosmartpen.Net.Export_Import
 {
     public class CompressedPage
     {
-        public CompressedPage(Page page, int maxForce) {
+
+        public CompressedPage() { }
+        public CompressedPage(Page page, String participantID, int maxForce) {
             Section = page.Section;
             Owner = page.Owner;
             Book = page.Book;
@@ -23,6 +25,8 @@ namespace Neosmartpen.Net.Neosmartpen.Net.Export_Import
             MarginR = page.MarginR;
             MarginT = page.MarginT;
 
+            //Create a unique Identifier
+            PageID = participantID + page.Number;
             List<Stroke> standin = page.Strokes;
             Strokes = new List<CompressedStroke>();
             for (int i = 0; i < standin.Count; i++) {
@@ -30,6 +34,8 @@ namespace Neosmartpen.Net.Neosmartpen.Net.Export_Import
                 this.Strokes.Add(new CompressedStroke(temp, maxForce));
             }
         }
+
+        public String PageID;
 
         public int Section { get; set; }
 

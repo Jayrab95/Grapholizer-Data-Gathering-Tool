@@ -8,6 +8,7 @@ namespace Neosmartpen.Net.Metadata.Model
 {
     public class Participant
     {
+        public Participant() { }
         public Participant(String Id) {
             this.Id = Id;
             this.Pages = new List<Page>();

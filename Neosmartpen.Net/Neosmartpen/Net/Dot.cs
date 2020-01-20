@@ -157,6 +157,12 @@ namespace Neosmartpen.Net
             Twist = twist;
         }
 
+        /// <summary>
+        /// Convert a Compressed dot into a normal dot
+        /// </summary>
+        /// <param name="cDot"></param>
+        /// <param name="timeStamp"></param>
+        /// <param name="maxForce"></param>
         public Dot(CompressedDot cDot, long timeStamp, int maxForce) {
             switch (cDot.DotType) {
                 case 0:

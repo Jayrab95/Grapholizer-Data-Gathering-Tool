@@ -8,17 +8,19 @@ namespace Neosmartpen.Net.Neosmartpen.Net.Export_Import
 {
     public class CompressedStroke
     {
+        public CompressedStroke() {}
         public CompressedStroke(Stroke stroke, int maxForce) {
             long lastTimeStamp = stroke.TimeStart;
             CompressedDots = new List<CompressedDot>();
-            for (int i = 0; i < stroke.Count; i++) {
-                Dot temp = stroke[i];
-                byte timeDiff = (byte) (temp.Timestamp - lastTimeStamp);
-                lastTimeStamp = temp.Timestamp;
-                CompressedDots.Add(new CompressedDot(temp,timeDiff,maxForce));
-            }
             if (stroke.Count != 0)
             {
+                for (int i = 0; i < stroke.Count; i++) {
+                    Dot temp = stroke[i];
+                    byte timeDiff = (byte) (temp.Timestamp - lastTimeStamp);
+                    lastTimeStamp = temp.Timestamp;
+                    CompressedDots.Add(new CompressedDot(temp,timeDiff,maxForce));
+                }
+         
                 TimeStart = stroke[0].Timestamp;
                 TimeEnd = stroke[stroke.Count - 1].Timestamp;
             }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Neosmartpen.Net.Neosmartpen.Net.Export_Import;
 using System.IO;
+using System.Collections;
 
 namespace Neosmartpen.Net.Metadata.Model
 {
@@ -21,7 +22,7 @@ namespace Neosmartpen.Net.Metadata.Model
 
             Participant participant = new Participant(CurrentParticipantID);
             ParticipantsMap = new Dictionary<string, Participant>();
-            ParticipantsMap.Add(CurrentParticipantID, participant);
+            if(CurrentParticipantID != null) ParticipantsMap.Add(CurrentParticipantID, participant);
         }
 
         /// <summary>
@@ -161,10 +162,20 @@ namespace Neosmartpen.Net.Metadata.Model
         public bool LoadSessionFromFile(String filePath) {
             String content = File.ReadAllText(filePath);
             if (content == null) return false;
+            Console.WriteLine("deformat");
             ParticipantsMap = JsonFormatter.Deformat(content, maxForce);
-            //CurrentParticipantID = ParticipantsMap;
-            //CurrentPage
-          
+
+            Console.WriteLine("finished deformat");
+
+            IEnumerator enumerator = ParticipantsMap.Keys.GetEnumerator();
+            enumerator.MoveNext();
+            Participant first = (Participant)enumerator.Current;
+
+            String fileName = Path.GetFileName(filePath);
+            CurrentParticipantID = first.Id;
+            CurrentPage = first.Pages[0];
+            SessionID = fileName;
+
             return true;
         }
 

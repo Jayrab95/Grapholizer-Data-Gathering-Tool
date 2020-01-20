@@ -373,7 +373,9 @@ namespace PenDemo
 
         private void buttonExport_Click(object sender, EventArgs e) {
             buttonExport.Text = "Save ....";
+            ToggleSessionButtons();
             session.SaveSessionToFile();
+            ToggleSessionButtons();
             buttonExport.Text = "Save";
         }
 
@@ -1126,6 +1128,26 @@ namespace PenDemo
             sessSelectForm.Show();
         }
 
+        private void loadSessionBtn_Click(object sender, EventArgs e)
+        {
+            ToggleSessionButtons();
+            Console.WriteLine("Hallo");
+            if (session != null)
+            {
+                Console.WriteLine("isNotNull");
+                session.SaveSessionToFile();
+                MessageBox.Show("Saved Data to file before loading");
+            }
+
+            String filePath = openFileDialog("Load Session", "No valid file selected", "Json file|*.json");
+            Console.WriteLine("new Sess");
+            session = new Session(null, null, filePath, maxForce);
+            Console.WriteLine("Load Sess");
+            if (!session.LoadSessionFromFile(filePath)) MessageBox.Show("Loading the new Session from file failed");
+            labelParticipantIDInput.Text = session.CurrentParticipantID;
+            labelPageNumberInput.Text = "" + session.CurrentPage.Number;
+            ToggleSessionButtons();
+        }
 
         private void btnSelectPrivateKey_Click(object sender, EventArgs e)
         {
@@ -1145,6 +1167,20 @@ namespace PenDemo
                     MessageBox.Show("Private key failed to set");
                 }
             }
+        }
+
+        private String openFileDialog(String title, String errorDialog, String filter) {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = filter;
+            openFileDialog.Title = title;
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                if (openFileDialog.FileName != null)
+                    return openFileDialog.FileName;
+                else MessageBox.Show(errorDialog);
+
+            }
+            return null;
         }
         #endregion
     }

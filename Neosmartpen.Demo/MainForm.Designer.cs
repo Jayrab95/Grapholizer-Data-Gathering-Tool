@@ -36,6 +36,7 @@
             this.labelExportError = new System.Windows.Forms.Label();
             this.labelCurrentParticipant = new System.Windows.Forms.Label();
             this.groupBoxExport = new System.Windows.Forms.GroupBox();
+            this.loadSessionBtn = new System.Windows.Forms.Button();
             this.labelPageNumberInput = new System.Windows.Forms.Label();
             this.labelParticipantIDInput = new System.Windows.Forms.Label();
             this.labelCurrentPageNum = new System.Windows.Forms.Label();
@@ -106,7 +107,7 @@
             this.lbDevices.FormattingEnabled = true;
             this.lbDevices.ItemHeight = 16;
             this.lbDevices.Location = new System.Drawing.Point(12, 26);
-            this.lbDevices.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.lbDevices.Margin = new System.Windows.Forms.Padding(4);
             this.lbDevices.Name = "lbDevices";
             this.lbDevices.Size = new System.Drawing.Size(294, 210);
             this.lbDevices.TabIndex = 23;
@@ -115,7 +116,7 @@
             // btnSearch
             // 
             this.btnSearch.Location = new System.Drawing.Point(12, 246);
-            this.btnSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSearch.Margin = new System.Windows.Forms.Padding(4);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(96, 30);
             this.btnSearch.TabIndex = 22;
@@ -136,10 +137,10 @@
             // buttonExport
             // 
             this.buttonExport.Enabled = false;
-            this.buttonExport.Location = new System.Drawing.Point(162, 41);
-            this.buttonExport.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonExport.Location = new System.Drawing.Point(131, 44);
+            this.buttonExport.Margin = new System.Windows.Forms.Padding(4);
             this.buttonExport.Name = "buttonExport";
-            this.buttonExport.Size = new System.Drawing.Size(96, 30);
+            this.buttonExport.Size = new System.Drawing.Size(61, 30);
             this.buttonExport.TabIndex = 22;
             this.buttonExport.Text = "Save";
             this.buttonExport.UseVisualStyleBackColor = true;
@@ -157,7 +158,7 @@
             // 
             this.buttonNextParticipant.Enabled = false;
             this.buttonNextParticipant.Location = new System.Drawing.Point(153, 174);
-            this.buttonNextParticipant.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonNextParticipant.Margin = new System.Windows.Forms.Padding(4);
             this.buttonNextParticipant.Name = "buttonNextParticipant";
             this.buttonNextParticipant.Size = new System.Drawing.Size(124, 30);
             this.buttonNextParticipant.TabIndex = 22;
@@ -186,6 +187,7 @@
             // 
             // groupBoxExport
             // 
+            this.groupBoxExport.Controls.Add(this.loadSessionBtn);
             this.groupBoxExport.Controls.Add(this.labelPageNumberInput);
             this.groupBoxExport.Controls.Add(this.labelParticipantIDInput);
             this.groupBoxExport.Controls.Add(this.labelCurrentPageNum);
@@ -198,13 +200,24 @@
             this.groupBoxExport.Controls.Add(this.labelCurrentParticipant);
             this.groupBoxExport.Enabled = false;
             this.groupBoxExport.Location = new System.Drawing.Point(339, 124);
-            this.groupBoxExport.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBoxExport.Margin = new System.Windows.Forms.Padding(4);
             this.groupBoxExport.Name = "groupBoxExport";
-            this.groupBoxExport.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBoxExport.Padding = new System.Windows.Forms.Padding(4);
             this.groupBoxExport.Size = new System.Drawing.Size(295, 222);
             this.groupBoxExport.TabIndex = 26;
             this.groupBoxExport.TabStop = false;
             this.groupBoxExport.Text = "Participant Control";
+            // 
+            // loadSessionBtn
+            // 
+            this.loadSessionBtn.Location = new System.Drawing.Point(196, 44);
+            this.loadSessionBtn.Margin = new System.Windows.Forms.Padding(4);
+            this.loadSessionBtn.Name = "loadSessionBtn";
+            this.loadSessionBtn.Size = new System.Drawing.Size(91, 30);
+            this.loadSessionBtn.TabIndex = 28;
+            this.loadSessionBtn.Text = "Load Session";
+            this.loadSessionBtn.UseVisualStyleBackColor = true;
+            this.loadSessionBtn.Click += new System.EventHandler(this.loadSessionBtn_Click);
             // 
             // labelPageNumberInput
             // 
@@ -241,7 +254,7 @@
             // buttonpLastParticipant
             // 
             this.buttonpLastParticipant.Location = new System.Drawing.Point(12, 174);
-            this.buttonpLastParticipant.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonpLastParticipant.Margin = new System.Windows.Forms.Padding(4);
             this.buttonpLastParticipant.Name = "buttonpLastParticipant";
             this.buttonpLastParticipant.Size = new System.Drawing.Size(124, 30);
             this.buttonpLastParticipant.TabIndex = 24;
@@ -253,7 +266,7 @@
             // 
             this.txtMacAddress.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtMacAddress.Location = new System.Drawing.Point(12, 290);
-            this.txtMacAddress.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtMacAddress.Margin = new System.Windows.Forms.Padding(4);
             this.txtMacAddress.Name = "txtMacAddress";
             this.txtMacAddress.Size = new System.Drawing.Size(181, 22);
             this.txtMacAddress.TabIndex = 19;
@@ -263,7 +276,7 @@
             // btnConnect
             // 
             this.btnConnect.Location = new System.Drawing.Point(200, 290);
-            this.btnConnect.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnConnect.Margin = new System.Windows.Forms.Padding(4);
             this.btnConnect.Name = "btnConnect";
             this.btnConnect.Size = new System.Drawing.Size(107, 30);
             this.btnConnect.TabIndex = 17;
@@ -274,7 +287,7 @@
             // button2
             // 
             this.button2.Location = new System.Drawing.Point(13, 960);
-            this.button2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button2.Margin = new System.Windows.Forms.Padding(4);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(623, 44);
             this.button2.TabIndex = 24;
@@ -289,9 +302,9 @@
             this.groupBox2.Controls.Add(this.txtMacAddress);
             this.groupBox2.Controls.Add(this.btnSearch);
             this.groupBox2.Location = new System.Drawing.Point(16, 18);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox2.Size = new System.Drawing.Size(316, 332);
             this.groupBox2.TabIndex = 32;
             this.groupBox2.TabStop = false;
@@ -302,9 +315,9 @@
             this.groupBox1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.groupBox1.Controls.Add(this.pictureBox1);
             this.groupBox1.Location = new System.Drawing.Point(644, 18);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox1.Size = new System.Drawing.Size(577, 986);
             this.groupBox1.TabIndex = 33;
             this.groupBox1.TabStop = false;
@@ -319,7 +332,7 @@
             this.pictureBox1.BackgroundImage = global::PenDemo.Properties.Resources.background;
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox1.Location = new System.Drawing.Point(22, 26);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(548, 775);
             this.pictureBox1.TabIndex = 27;
@@ -330,9 +343,9 @@
             this.groupBox3.Controls.Add(this.tbPenInfo);
             this.groupBox3.Enabled = false;
             this.groupBox3.Location = new System.Drawing.Point(16, 354);
-            this.groupBox3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox3.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox3.Size = new System.Drawing.Size(316, 169);
             this.groupBox3.TabIndex = 37;
             this.groupBox3.TabStop = false;
@@ -342,7 +355,7 @@
             // 
             this.tbPenInfo.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tbPenInfo.Location = new System.Drawing.Point(20, 30);
-            this.tbPenInfo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbPenInfo.Margin = new System.Windows.Forms.Padding(4);
             this.tbPenInfo.Multiline = true;
             this.tbPenInfo.Name = "tbPenInfo";
             this.tbPenInfo.ReadOnly = true;
@@ -356,9 +369,9 @@
             this.groupBox4.Controls.Add(this.lbOfflineData);
             this.groupBox4.Enabled = false;
             this.groupBox4.Location = new System.Drawing.Point(13, 658);
-            this.groupBox4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox4.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox4.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox4.Size = new System.Drawing.Size(317, 262);
             this.groupBox4.TabIndex = 36;
             this.groupBox4.TabStop = false;
@@ -367,7 +380,7 @@
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(223, 216);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(85, 30);
             this.button1.TabIndex = 2;
@@ -378,7 +391,7 @@
             // button3
             // 
             this.button3.Location = new System.Drawing.Point(8, 216);
-            this.button3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button3.Margin = new System.Windows.Forms.Padding(4);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(85, 30);
             this.button3.TabIndex = 1;
@@ -392,7 +405,7 @@
             this.lbOfflineData.FormattingEnabled = true;
             this.lbOfflineData.ItemHeight = 16;
             this.lbOfflineData.Location = new System.Drawing.Point(8, 28);
-            this.lbOfflineData.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.lbOfflineData.Margin = new System.Windows.Forms.Padding(4);
             this.lbOfflineData.Name = "lbOfflineData";
             this.lbOfflineData.Size = new System.Drawing.Size(301, 178);
             this.lbOfflineData.TabIndex = 0;
@@ -401,7 +414,7 @@
             // 
             this.nmPowerOffTime.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.nmPowerOffTime.Location = new System.Drawing.Point(177, 40);
-            this.nmPowerOffTime.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.nmPowerOffTime.Margin = new System.Windows.Forms.Padding(4);
             this.nmPowerOffTime.Maximum = new decimal(new int[] {
             -1486618624,
             232830643,
@@ -417,7 +430,7 @@
             this.cbPenCapPower.AutoSize = true;
             this.cbPenCapPower.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cbPenCapPower.Location = new System.Drawing.Point(25, 88);
-            this.cbPenCapPower.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbPenCapPower.Margin = new System.Windows.Forms.Padding(4);
             this.cbPenCapPower.Name = "cbPenCapPower";
             this.cbPenCapPower.Size = new System.Drawing.Size(167, 21);
             this.cbPenCapPower.TabIndex = 1;
@@ -430,7 +443,7 @@
             this.cbPenTipPowerOn.AutoSize = true;
             this.cbPenTipPowerOn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cbPenTipPowerOn.Location = new System.Drawing.Point(25, 120);
-            this.cbPenTipPowerOn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbPenTipPowerOn.Margin = new System.Windows.Forms.Padding(4);
             this.cbPenTipPowerOn.Name = "cbPenTipPowerOn";
             this.cbPenTipPowerOn.Size = new System.Drawing.Size(151, 21);
             this.cbPenTipPowerOn.TabIndex = 2;
@@ -443,7 +456,7 @@
             this.cbBeep.AutoSize = true;
             this.cbBeep.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cbBeep.Location = new System.Drawing.Point(25, 150);
-            this.cbBeep.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbBeep.Margin = new System.Windows.Forms.Padding(4);
             this.cbBeep.Name = "cbBeep";
             this.cbBeep.Size = new System.Drawing.Size(102, 21);
             this.cbBeep.TabIndex = 3;
@@ -456,7 +469,7 @@
             this.cbOfflineData.AutoSize = true;
             this.cbOfflineData.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cbOfflineData.Location = new System.Drawing.Point(25, 178);
-            this.cbOfflineData.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbOfflineData.Margin = new System.Windows.Forms.Padding(4);
             this.cbOfflineData.Name = "cbOfflineData";
             this.cbOfflineData.Size = new System.Drawing.Size(99, 21);
             this.cbOfflineData.TabIndex = 5;
@@ -497,7 +510,7 @@
             // prgPower
             // 
             this.prgPower.Location = new System.Drawing.Point(77, 224);
-            this.prgPower.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.prgPower.Margin = new System.Windows.Forms.Padding(4);
             this.prgPower.Name = "prgPower";
             this.prgPower.Size = new System.Drawing.Size(200, 30);
             this.prgPower.TabIndex = 13;
@@ -505,7 +518,7 @@
             // prgStorage
             // 
             this.prgStorage.Location = new System.Drawing.Point(77, 262);
-            this.prgStorage.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.prgStorage.Margin = new System.Windows.Forms.Padding(4);
             this.prgStorage.Name = "prgStorage";
             this.prgStorage.Size = new System.Drawing.Size(200, 30);
             this.prgStorage.TabIndex = 14;
@@ -534,7 +547,7 @@
             // 
             this.tbOldPassword.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tbOldPassword.Location = new System.Drawing.Point(45, 182);
-            this.tbOldPassword.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbOldPassword.Margin = new System.Windows.Forms.Padding(4);
             this.tbOldPassword.Name = "tbOldPassword";
             this.tbOldPassword.Size = new System.Drawing.Size(142, 22);
             this.tbOldPassword.TabIndex = 0;
@@ -543,7 +556,7 @@
             // 
             this.tbNewPassword.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tbNewPassword.Location = new System.Drawing.Point(45, 218);
-            this.tbNewPassword.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbNewPassword.Margin = new System.Windows.Forms.Padding(4);
             this.tbNewPassword.Name = "tbNewPassword";
             this.tbNewPassword.Size = new System.Drawing.Size(142, 22);
             this.tbNewPassword.TabIndex = 0;
@@ -551,7 +564,7 @@
             // btnPwdChange
             // 
             this.btnPwdChange.Location = new System.Drawing.Point(196, 218);
-            this.btnPwdChange.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnPwdChange.Margin = new System.Windows.Forms.Padding(4);
             this.btnPwdChange.Name = "btnPwdChange";
             this.btnPwdChange.Size = new System.Drawing.Size(85, 30);
             this.btnPwdChange.TabIndex = 17;
@@ -562,7 +575,7 @@
             // btnUpgrade
             // 
             this.btnUpgrade.Location = new System.Drawing.Point(220, 70);
-            this.btnUpgrade.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnUpgrade.Margin = new System.Windows.Forms.Padding(4);
             this.btnUpgrade.Name = "btnUpgrade";
             this.btnUpgrade.Size = new System.Drawing.Size(85, 28);
             this.btnUpgrade.TabIndex = 18;
@@ -574,7 +587,7 @@
             // 
             this.tbFirmwarePath.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tbFirmwarePath.Location = new System.Drawing.Point(73, 34);
-            this.tbFirmwarePath.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbFirmwarePath.Margin = new System.Windows.Forms.Padding(4);
             this.tbFirmwarePath.Name = "tbFirmwarePath";
             this.tbFirmwarePath.Size = new System.Drawing.Size(233, 22);
             this.tbFirmwarePath.TabIndex = 19;
@@ -584,7 +597,7 @@
             // 
             this.tbFirmwareVersion.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tbFirmwareVersion.Location = new System.Drawing.Point(73, 70);
-            this.tbFirmwareVersion.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbFirmwareVersion.Margin = new System.Windows.Forms.Padding(4);
             this.tbFirmwareVersion.Name = "tbFirmwareVersion";
             this.tbFirmwareVersion.Size = new System.Drawing.Size(141, 22);
             this.tbFirmwareVersion.TabIndex = 20;
@@ -613,9 +626,9 @@
             this.groupBox5.Controls.Add(this.nmPowerOffTime);
             this.groupBox5.Enabled = false;
             this.groupBox5.Location = new System.Drawing.Point(339, 354);
-            this.groupBox5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox5.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox5.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox5.Size = new System.Drawing.Size(295, 328);
             this.groupBox5.TabIndex = 35;
             this.groupBox5.TabStop = false;
@@ -630,9 +643,9 @@
             this.groupBox7.Controls.Add(this.tbFirmwarePath);
             this.groupBox7.Enabled = false;
             this.groupBox7.Location = new System.Drawing.Point(13, 533);
-            this.groupBox7.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox7.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox7.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox7.Size = new System.Drawing.Size(316, 118);
             this.groupBox7.TabIndex = 39;
             this.groupBox7.TabStop = false;
@@ -664,9 +677,9 @@
             this.groupBox6.Controls.Add(this.tbNewPassword);
             this.groupBox6.Enabled = false;
             this.groupBox6.Location = new System.Drawing.Point(339, 690);
-            this.groupBox6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox6.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox6.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox6.Size = new System.Drawing.Size(293, 262);
             this.groupBox6.TabIndex = 40;
             this.groupBox6.TabStop = false;
@@ -675,7 +688,7 @@
             // btnDeleteCertificate
             // 
             this.btnDeleteCertificate.Location = new System.Drawing.Point(196, 112);
-            this.btnDeleteCertificate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnDeleteCertificate.Margin = new System.Windows.Forms.Padding(4);
             this.btnDeleteCertificate.Name = "btnDeleteCertificate";
             this.btnDeleteCertificate.Size = new System.Drawing.Size(85, 30);
             this.btnDeleteCertificate.TabIndex = 21;
@@ -696,7 +709,7 @@
             // tbSerialNumber
             // 
             this.tbSerialNumber.Location = new System.Drawing.Point(12, 114);
-            this.tbSerialNumber.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbSerialNumber.Margin = new System.Windows.Forms.Padding(4);
             this.tbSerialNumber.Name = "tbSerialNumber";
             this.tbSerialNumber.Size = new System.Drawing.Size(176, 22);
             this.tbSerialNumber.TabIndex = 19;
@@ -724,7 +737,7 @@
             // btnUpdateCertificate
             // 
             this.btnUpdateCertificate.Location = new System.Drawing.Point(196, 44);
-            this.btnUpdateCertificate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnUpdateCertificate.Margin = new System.Windows.Forms.Padding(4);
             this.btnUpdateCertificate.Name = "btnUpdateCertificate";
             this.btnUpdateCertificate.Size = new System.Drawing.Size(85, 30);
             this.btnUpdateCertificate.TabIndex = 3;
@@ -735,7 +748,7 @@
             // tbCertificateFilePath
             // 
             this.tbCertificateFilePath.Location = new System.Drawing.Point(12, 46);
-            this.tbCertificateFilePath.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbCertificateFilePath.Margin = new System.Windows.Forms.Padding(4);
             this.tbCertificateFilePath.Name = "tbCertificateFilePath";
             this.tbCertificateFilePath.ReadOnly = true;
             this.tbCertificateFilePath.Size = new System.Drawing.Size(176, 22);
@@ -744,7 +757,7 @@
             // btnSelectPrivateKey
             // 
             this.btnSelectPrivateKey.Location = new System.Drawing.Point(204, 50);
-            this.btnSelectPrivateKey.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSelectPrivateKey.Margin = new System.Windows.Forms.Padding(4);
             this.btnSelectPrivateKey.Name = "btnSelectPrivateKey";
             this.btnSelectPrivateKey.Size = new System.Drawing.Size(79, 30);
             this.btnSelectPrivateKey.TabIndex = 1;
@@ -755,7 +768,7 @@
             // tbPrivateKeyFilePath
             // 
             this.tbPrivateKeyFilePath.Location = new System.Drawing.Point(13, 52);
-            this.tbPrivateKeyFilePath.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbPrivateKeyFilePath.Margin = new System.Windows.Forms.Padding(4);
             this.tbPrivateKeyFilePath.Name = "tbPrivateKeyFilePath";
             this.tbPrivateKeyFilePath.ReadOnly = true;
             this.tbPrivateKeyFilePath.Size = new System.Drawing.Size(184, 22);
@@ -776,15 +789,15 @@
             this.groupBox8.Controls.Add(this.tbPrivateKeyFilePath);
             this.groupBox8.Controls.Add(this.label10);
             this.groupBox8.Controls.Add(this.btnSelectPrivateKey);
+            this.groupBox8.Enabled = false;
             this.groupBox8.Location = new System.Drawing.Point(339, 18);
-            this.groupBox8.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox8.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox8.Name = "groupBox8";
-            this.groupBox8.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox8.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox8.Size = new System.Drawing.Size(295, 98);
             this.groupBox8.TabIndex = 26;
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "Authentication Parameter";
-            this.groupBox8.Enabled = false;
             // 
             // MainForm
             // 
@@ -792,7 +805,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(1302, 840);
+            this.ClientSize = new System.Drawing.Size(1323, 840);
             this.Controls.Add(this.groupBoxExport);
             this.Controls.Add(this.groupBox8);
             this.Controls.Add(this.groupBox6);
@@ -804,7 +817,7 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox5);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "MainForm";
             this.TransparencyKey = System.Drawing.Color.Blue;
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
@@ -894,6 +907,7 @@
         private System.Windows.Forms.Label labelCurrentPageNum;
         private System.Windows.Forms.Label labelParticipantIDInput;
         private System.Windows.Forms.Label labelPageNumberInput;
+        private System.Windows.Forms.Button loadSessionBtn;
     }
 }
 

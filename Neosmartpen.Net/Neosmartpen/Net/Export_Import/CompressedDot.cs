@@ -7,6 +7,9 @@ namespace Neosmartpen.Net.Neosmartpen.Net.Export_Import
 {
     public class CompressedDot
     {
+
+
+        public CompressedDot() { }
         /// <summary>
         /// Builds a Compressed Dot for Data Export with less Metadata
         /// </summary>
@@ -43,9 +46,9 @@ namespace Neosmartpen.Net.Neosmartpen.Net.Export_Import
 
         public int DotType { get; set; }
 
-        /*
-         * time difference between two dots in miliseconds
-         */
+        ///<summary>
+        /// time difference between two dots in miliseconds
+        ///<summary>
         public byte TimeDiff { get; set; }
 
     }
