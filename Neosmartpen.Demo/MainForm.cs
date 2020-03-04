@@ -240,6 +240,7 @@ namespace PenDemo
 
         private void ProcessDot(Dot dot)
         {
+            Console.WriteLine("Force: " + dot.Force);
             if (session != null)
             {
                 dot.Force = mFilter.Filter(dot.Force);
@@ -508,15 +509,6 @@ namespace PenDemo
         {
             this.BeginInvoke( new MethodInvoker( delegate()
             {
-                nmPowerOffTime.Value = autoshutdownTime;
-                cbBeep.Checked = beep;
-                cbOfflineData.Checked = false;
-                cbOfflineData.Enabled = false;
-                cbPenCapPower.Checked = false;
-                cbPenCapPower.Enabled = false;
-
-                cbPenTipPowerOn.Checked = autopower;
-
                 prgPower.Maximum = 100;
                 prgPower.Value = battery;
 
@@ -527,15 +519,7 @@ namespace PenDemo
 
         void PenCommV1Callbacks.onPenPasswordSetUpResponse( IPenComm sender, bool result )
         {
-            if ( !result )
-            {
-                MessageBox.Show( "Can not change password." );
-            }
-            else
-            {
-                tbOldPassword.Text = "";
-                tbNewPassword.Text = "";
-            }
+            //
         }
 
         void PenCommV1Callbacks.onPenSensitivitySetUpResponse( IPenComm sender, bool isSuccess )
@@ -774,14 +758,6 @@ namespace PenDemo
         {
             this.BeginInvoke( new MethodInvoker( delegate()
             {
-                nmPowerOffTime.Value = autoShutdownTime;
-                cbBeep.Checked = beep;
-                cbOfflineData.Enabled = true;
-                cbOfflineData.Checked = useOfflineData;
-                cbPenCapPower.Enabled = true;
-                cbPenCapPower.Checked = penCapPower;
-                cbPenTipPowerOn.Checked = autoPowerOn;
-                
                 prgPower.Maximum = 100;
                 prgPower.Value = battery > 100 ? 100 : battery;
 
@@ -800,18 +776,7 @@ namespace PenDemo
 
         void PenCommV2Callbacks.onPenPasswordSetUpResponse( IPenComm sender, bool result )
         {
-            if ( !result )
-            {
-                MessageBox.Show( "Cannot change password." );
-            }
-            else
-            {
-                this.BeginInvoke( new MethodInvoker( delegate()
-                {
-                    tbOldPassword.Text = "";
-                    tbNewPassword.Text = "";
-                }));
-            }
+            //not implemented
         }
 
         void PenCommV2Callbacks.onPenOfflineDataSetUpResponse( IPenComm sender, bool result )
@@ -989,137 +954,11 @@ namespace PenDemo
             });
         }
 
-        private void nmPowerOffTime_ValueChanged( object sender, EventArgs e )
-        { 
-            Request(
-                delegate { mPenCommV1.ReqSetupPenAutoShutdownTime( (short)nmPowerOffTime.Value ); },
-                delegate { mPenCommV2.ReqSetupPenAutoShutdownTime( (short)nmPowerOffTime.Value ); }
-                );
-        }
-
-        private void cbPenCapPower_CheckedChanged( object sender, EventArgs e )
-        {
-            Request(
-                delegate { },
-                delegate { mPenCommV2.ReqSetupPenCapPower( cbPenCapPower.Checked ); }
-                );
-        }
-
-        private void cbPenTipPowerOn_CheckedChanged( object sender, EventArgs e )
-        {
-            Request(
-                delegate { mPenCommV1.ReqSetupPenAutoPowerOn( cbPenTipPowerOn.Checked ); },
-                delegate { mPenCommV2.ReqSetupPenAutoPowerOn( cbPenTipPowerOn.Checked ); }
-                );
-        }
-
-        private void cbBeep_CheckedChanged( object sender, EventArgs e )
-        {
-            Request(
-                delegate { mPenCommV1.ReqSetupPenBeep( cbBeep.Checked ); },
-                delegate { mPenCommV2.ReqSetupPenBeep( cbBeep.Checked ); }
-                );
-        }
-
-        private void cbOfflineData_CheckedChanged( object sender, EventArgs e )
-        {
-            Request(
-                delegate { },
-                delegate { mPenCommV2.ReqSetupOfflineData( cbOfflineData.Checked ); }
-                );
-        }
-
-        private void btnPwdChange_Click( object sender, EventArgs e )
-        {
-            Request(
-                delegate { mPenCommV1.ReqSetUpPassword( tbOldPassword.Text, tbNewPassword.Text ); },
-                delegate { mPenCommV2.ReqSetUpPassword( tbOldPassword.Text, tbNewPassword.Text ); }
-                );
-        }
-
         private void ToggleOption(bool enabled)
         {
             groupBox3.Enabled = enabled;
             groupBox5.Enabled = enabled;
             groupBox4.Enabled = enabled;
-            groupBox6.Enabled = enabled;
-            groupBox7.Enabled = enabled;
-        }
-
-        private void btnUpgrade_Click( object sender, EventArgs e )
-        {
-            if ( tbFirmwarePath.Text == "" || tbFirmwareVersion.Text == "" )
-            {
-                MessageBox.Show( "Select firmware file and enter firmware version." );
-                return;
-            }
-
-            Request( delegate { mPenCommV1.ReqPenSwUpgrade( tbFirmwarePath.Text ); }, delegate { mPenCommV2.ReqPenSwUpgrade( tbFirmwarePath.Text, tbFirmwareVersion.Text ); } );
-        }
-
-        private void tbFirmwarePath_Click( object sender, EventArgs e )
-        {
-            OpenFileDialog openFileDialog1 = new OpenFileDialog();
-            openFileDialog1.Filter = "Firmware Files|*._v_";
-            openFileDialog1.Title = "Select a Firmware File";
-
-            if ( openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK )
-            {
-                tbFirmwarePath.Text = openFileDialog1.FileName;
-            }
-        }
-
-        private void btnUpdateCertificate_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Certificate Files|*.*";
-            openFileDialog.Title = "Select a Certificate File";
-
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                tbCertificateFilePath.Text = openFileDialog.FileName;
-                Request(
-                    delegate { },
-                    delegate {
-                        if (!mPenCommV2.IsSupportEncryption)
-                        {
-                            MessageBox.Show("The pen does not support secure communication.");
-                        }
-
-                        if (!mPenCommV2.ReqUpdateCertificate(openFileDialog.FileName))
-                        {
-                            MessageBox.Show("Certificate transfer failed (Please check the certificate file)");
-                        }
-                    }
-                );
-            }
-        }
-
-        private void btnDeleteCertificate_Click(object sender, EventArgs e)
-        {
-            if (string.IsNullOrEmpty(tbSerialNumber.Text))
-            {
-                MessageBox.Show("Please enter the serial number of the certificate.");
-                tbSerialNumber.Focus();
-                return;
-            }
-
-            Request(
-                delegate { },
-                delegate
-                {
-                    if (!mPenCommV2.IsSupportEncryption)
-                    {
-                        MessageBox.Show("The pen does not support secure communication.");
-                    }
-
-                    if (!mPenCommV2.ReqDeleteCertificate(tbSerialNumber.Text))
-                    {
-                        MessageBox.Show("Please check the serial number of the certificate. (Only numbers can be entered.)");
-                        tbSerialNumber.Focus();
-                    }
-                }
-            );
         }
 
         private void buttonpLastParticipant_Click(object sender, EventArgs e)

@@ -43,7 +43,6 @@
             this.buttonpLastParticipant = new System.Windows.Forms.Button();
             this.txtMacAddress = new System.Windows.Forms.TextBox();
             this.btnConnect = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -54,36 +53,11 @@
             this.button3 = new System.Windows.Forms.Button();
             this.lbOfflineData = new System.Windows.Forms.ListBox();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
-            this.nmPowerOffTime = new System.Windows.Forms.NumericUpDown();
-            this.cbPenCapPower = new System.Windows.Forms.CheckBox();
-            this.cbPenTipPowerOn = new System.Windows.Forms.CheckBox();
-            this.cbBeep = new System.Windows.Forms.CheckBox();
-            this.cbOfflineData = new System.Windows.Forms.CheckBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.prgPower = new System.Windows.Forms.ProgressBar();
             this.prgStorage = new System.Windows.Forms.ProgressBar();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.tbOldPassword = new System.Windows.Forms.TextBox();
-            this.tbNewPassword = new System.Windows.Forms.TextBox();
-            this.btnPwdChange = new System.Windows.Forms.Button();
-            this.btnUpgrade = new System.Windows.Forms.Button();
-            this.tbFirmwarePath = new System.Windows.Forms.TextBox();
-            this.tbFirmwareVersion = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.groupBox7 = new System.Windows.Forms.GroupBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.btnDeleteCertificate = new System.Windows.Forms.Button();
-            this.label12 = new System.Windows.Forms.Label();
-            this.tbSerialNumber = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.btnUpdateCertificate = new System.Windows.Forms.Button();
-            this.tbCertificateFilePath = new System.Windows.Forms.TextBox();
             this.btnSelectPrivateKey = new System.Windows.Forms.Button();
             this.tbPrivateKeyFilePath = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
@@ -94,10 +68,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nmPowerOffTime)).BeginInit();
             this.groupBox5.SuspendLayout();
-            this.groupBox7.SuspendLayout();
-            this.groupBox6.SuspendLayout();
             this.groupBox8.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -284,17 +255,6 @@
             this.btnConnect.UseVisualStyleBackColor = true;
             this.btnConnect.Click += new System.EventHandler(this.btnConnect_Click);
             // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(13, 960);
-            this.button2.Margin = new System.Windows.Forms.Padding(4);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(623, 44);
-            this.button2.TabIndex = 24;
-            this.button2.Text = "Clear";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.btnConnect);
@@ -368,18 +328,18 @@
             this.groupBox4.Controls.Add(this.button3);
             this.groupBox4.Controls.Add(this.lbOfflineData);
             this.groupBox4.Enabled = false;
-            this.groupBox4.Location = new System.Drawing.Point(13, 658);
+            this.groupBox4.Location = new System.Drawing.Point(13, 531);
             this.groupBox4.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox4.Size = new System.Drawing.Size(317, 262);
+            this.groupBox4.Size = new System.Drawing.Size(317, 205);
             this.groupBox4.TabIndex = 36;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Offline Data";
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(223, 216);
+            this.button1.Location = new System.Drawing.Point(225, 163);
             this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(85, 30);
@@ -390,7 +350,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(8, 216);
+            this.button3.Location = new System.Drawing.Point(8, 163);
             this.button3.Margin = new System.Windows.Forms.Padding(4);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(85, 30);
@@ -407,90 +367,13 @@
             this.lbOfflineData.Location = new System.Drawing.Point(8, 28);
             this.lbOfflineData.Margin = new System.Windows.Forms.Padding(4);
             this.lbOfflineData.Name = "lbOfflineData";
-            this.lbOfflineData.Size = new System.Drawing.Size(301, 178);
+            this.lbOfflineData.Size = new System.Drawing.Size(301, 114);
             this.lbOfflineData.TabIndex = 0;
-            // 
-            // nmPowerOffTime
-            // 
-            this.nmPowerOffTime.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.nmPowerOffTime.Location = new System.Drawing.Point(177, 40);
-            this.nmPowerOffTime.Margin = new System.Windows.Forms.Padding(4);
-            this.nmPowerOffTime.Maximum = new decimal(new int[] {
-            -1486618624,
-            232830643,
-            0,
-            0});
-            this.nmPowerOffTime.Name = "nmPowerOffTime";
-            this.nmPowerOffTime.Size = new System.Drawing.Size(95, 22);
-            this.nmPowerOffTime.TabIndex = 0;
-            this.nmPowerOffTime.ValueChanged += new System.EventHandler(this.nmPowerOffTime_ValueChanged);
-            // 
-            // cbPenCapPower
-            // 
-            this.cbPenCapPower.AutoSize = true;
-            this.cbPenCapPower.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cbPenCapPower.Location = new System.Drawing.Point(25, 88);
-            this.cbPenCapPower.Margin = new System.Windows.Forms.Padding(4);
-            this.cbPenCapPower.Name = "cbPenCapPower";
-            this.cbPenCapPower.Size = new System.Drawing.Size(167, 21);
-            this.cbPenCapPower.TabIndex = 1;
-            this.cbPenCapPower.Text = "Pen cap power control";
-            this.cbPenCapPower.UseVisualStyleBackColor = true;
-            this.cbPenCapPower.CheckedChanged += new System.EventHandler(this.cbPenCapPower_CheckedChanged);
-            // 
-            // cbPenTipPowerOn
-            // 
-            this.cbPenTipPowerOn.AutoSize = true;
-            this.cbPenTipPowerOn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cbPenTipPowerOn.Location = new System.Drawing.Point(25, 120);
-            this.cbPenTipPowerOn.Margin = new System.Windows.Forms.Padding(4);
-            this.cbPenTipPowerOn.Name = "cbPenTipPowerOn";
-            this.cbPenTipPowerOn.Size = new System.Drawing.Size(151, 21);
-            this.cbPenTipPowerOn.TabIndex = 2;
-            this.cbPenTipPowerOn.Text = "Power on by pen tip";
-            this.cbPenTipPowerOn.UseVisualStyleBackColor = true;
-            this.cbPenTipPowerOn.CheckedChanged += new System.EventHandler(this.cbPenTipPowerOn_CheckedChanged);
-            // 
-            // cbBeep
-            // 
-            this.cbBeep.AutoSize = true;
-            this.cbBeep.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cbBeep.Location = new System.Drawing.Point(25, 150);
-            this.cbBeep.Margin = new System.Windows.Forms.Padding(4);
-            this.cbBeep.Name = "cbBeep";
-            this.cbBeep.Size = new System.Drawing.Size(102, 21);
-            this.cbBeep.TabIndex = 3;
-            this.cbBeep.Text = "Beep sound";
-            this.cbBeep.UseVisualStyleBackColor = true;
-            this.cbBeep.CheckedChanged += new System.EventHandler(this.cbBeep_CheckedChanged);
-            // 
-            // cbOfflineData
-            // 
-            this.cbOfflineData.AutoSize = true;
-            this.cbOfflineData.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cbOfflineData.Location = new System.Drawing.Point(25, 178);
-            this.cbOfflineData.Margin = new System.Windows.Forms.Padding(4);
-            this.cbOfflineData.Name = "cbOfflineData";
-            this.cbOfflineData.Size = new System.Drawing.Size(99, 21);
-            this.cbOfflineData.TabIndex = 5;
-            this.cbOfflineData.Text = "Offline data";
-            this.cbOfflineData.UseVisualStyleBackColor = true;
-            this.cbOfflineData.CheckedChanged += new System.EventHandler(this.cbOfflineData_CheckedChanged);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(20, 46);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(133, 17);
-            this.label1.TabIndex = 8;
-            this.label1.Text = "Auto power off time ";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(28, 232);
+            this.label4.Location = new System.Drawing.Point(28, 59);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(47, 17);
@@ -500,7 +383,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(20, 270);
+            this.label5.Location = new System.Drawing.Point(20, 97);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(58, 17);
@@ -509,7 +392,7 @@
             // 
             // prgPower
             // 
-            this.prgPower.Location = new System.Drawing.Point(77, 224);
+            this.prgPower.Location = new System.Drawing.Point(77, 51);
             this.prgPower.Margin = new System.Windows.Forms.Padding(4);
             this.prgPower.Name = "prgPower";
             this.prgPower.Size = new System.Drawing.Size(200, 30);
@@ -517,242 +400,27 @@
             // 
             // prgStorage
             // 
-            this.prgStorage.Location = new System.Drawing.Point(77, 262);
+            this.prgStorage.Location = new System.Drawing.Point(77, 89);
             this.prgStorage.Margin = new System.Windows.Forms.Padding(4);
             this.prgStorage.Name = "prgStorage";
             this.prgStorage.Size = new System.Drawing.Size(200, 30);
             this.prgStorage.TabIndex = 14;
             // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(15, 188);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(27, 17);
-            this.label6.TabIndex = 15;
-            this.label6.Text = "old";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(7, 224);
-            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(33, 17);
-            this.label7.TabIndex = 16;
-            this.label7.Text = "new";
-            // 
-            // tbOldPassword
-            // 
-            this.tbOldPassword.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbOldPassword.Location = new System.Drawing.Point(45, 182);
-            this.tbOldPassword.Margin = new System.Windows.Forms.Padding(4);
-            this.tbOldPassword.Name = "tbOldPassword";
-            this.tbOldPassword.Size = new System.Drawing.Size(142, 22);
-            this.tbOldPassword.TabIndex = 0;
-            // 
-            // tbNewPassword
-            // 
-            this.tbNewPassword.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbNewPassword.Location = new System.Drawing.Point(45, 218);
-            this.tbNewPassword.Margin = new System.Windows.Forms.Padding(4);
-            this.tbNewPassword.Name = "tbNewPassword";
-            this.tbNewPassword.Size = new System.Drawing.Size(142, 22);
-            this.tbNewPassword.TabIndex = 0;
-            // 
-            // btnPwdChange
-            // 
-            this.btnPwdChange.Location = new System.Drawing.Point(196, 218);
-            this.btnPwdChange.Margin = new System.Windows.Forms.Padding(4);
-            this.btnPwdChange.Name = "btnPwdChange";
-            this.btnPwdChange.Size = new System.Drawing.Size(85, 30);
-            this.btnPwdChange.TabIndex = 17;
-            this.btnPwdChange.Text = "Change";
-            this.btnPwdChange.UseVisualStyleBackColor = true;
-            this.btnPwdChange.Click += new System.EventHandler(this.btnPwdChange_Click);
-            // 
-            // btnUpgrade
-            // 
-            this.btnUpgrade.Location = new System.Drawing.Point(220, 70);
-            this.btnUpgrade.Margin = new System.Windows.Forms.Padding(4);
-            this.btnUpgrade.Name = "btnUpgrade";
-            this.btnUpgrade.Size = new System.Drawing.Size(85, 28);
-            this.btnUpgrade.TabIndex = 18;
-            this.btnUpgrade.Text = "Update";
-            this.btnUpgrade.UseVisualStyleBackColor = true;
-            this.btnUpgrade.Click += new System.EventHandler(this.btnUpgrade_Click);
-            // 
-            // tbFirmwarePath
-            // 
-            this.tbFirmwarePath.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbFirmwarePath.Location = new System.Drawing.Point(73, 34);
-            this.tbFirmwarePath.Margin = new System.Windows.Forms.Padding(4);
-            this.tbFirmwarePath.Name = "tbFirmwarePath";
-            this.tbFirmwarePath.Size = new System.Drawing.Size(233, 22);
-            this.tbFirmwarePath.TabIndex = 19;
-            this.tbFirmwarePath.Click += new System.EventHandler(this.tbFirmwarePath_Click);
-            // 
-            // tbFirmwareVersion
-            // 
-            this.tbFirmwareVersion.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tbFirmwareVersion.Location = new System.Drawing.Point(73, 70);
-            this.tbFirmwareVersion.Margin = new System.Windows.Forms.Padding(4);
-            this.tbFirmwareVersion.Name = "tbFirmwareVersion";
-            this.tbFirmwareVersion.Size = new System.Drawing.Size(141, 22);
-            this.tbFirmwareVersion.TabIndex = 20;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(16, 74);
-            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(56, 17);
-            this.label8.TabIndex = 21;
-            this.label8.Text = "Version";
-            // 
             // groupBox5
             // 
-            this.groupBox5.Controls.Add(this.cbPenCapPower);
             this.groupBox5.Controls.Add(this.label4);
             this.groupBox5.Controls.Add(this.label5);
-            this.groupBox5.Controls.Add(this.label1);
             this.groupBox5.Controls.Add(this.prgPower);
             this.groupBox5.Controls.Add(this.prgStorage);
-            this.groupBox5.Controls.Add(this.cbOfflineData);
-            this.groupBox5.Controls.Add(this.cbBeep);
-            this.groupBox5.Controls.Add(this.cbPenTipPowerOn);
-            this.groupBox5.Controls.Add(this.nmPowerOffTime);
             this.groupBox5.Enabled = false;
             this.groupBox5.Location = new System.Drawing.Point(339, 354);
             this.groupBox5.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox5.Size = new System.Drawing.Size(295, 328);
+            this.groupBox5.Size = new System.Drawing.Size(295, 225);
             this.groupBox5.TabIndex = 35;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Pen Setting";
-            // 
-            // groupBox7
-            // 
-            this.groupBox7.Controls.Add(this.label2);
-            this.groupBox7.Controls.Add(this.label8);
-            this.groupBox7.Controls.Add(this.btnUpgrade);
-            this.groupBox7.Controls.Add(this.tbFirmwareVersion);
-            this.groupBox7.Controls.Add(this.tbFirmwarePath);
-            this.groupBox7.Enabled = false;
-            this.groupBox7.Location = new System.Drawing.Point(13, 533);
-            this.groupBox7.Margin = new System.Windows.Forms.Padding(4);
-            this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox7.Size = new System.Drawing.Size(316, 118);
-            this.groupBox7.TabIndex = 39;
-            this.groupBox7.TabStop = false;
-            this.groupBox7.Text = "Firmware Update";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(43, 38);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(30, 17);
-            this.label2.TabIndex = 22;
-            this.label2.Text = "File";
-            // 
-            // groupBox6
-            // 
-            this.groupBox6.Controls.Add(this.btnDeleteCertificate);
-            this.groupBox6.Controls.Add(this.label12);
-            this.groupBox6.Controls.Add(this.tbSerialNumber);
-            this.groupBox6.Controls.Add(this.label11);
-            this.groupBox6.Controls.Add(this.btnPwdChange);
-            this.groupBox6.Controls.Add(this.label9);
-            this.groupBox6.Controls.Add(this.label7);
-            this.groupBox6.Controls.Add(this.btnUpdateCertificate);
-            this.groupBox6.Controls.Add(this.tbOldPassword);
-            this.groupBox6.Controls.Add(this.tbCertificateFilePath);
-            this.groupBox6.Controls.Add(this.label6);
-            this.groupBox6.Controls.Add(this.tbNewPassword);
-            this.groupBox6.Enabled = false;
-            this.groupBox6.Location = new System.Drawing.Point(339, 690);
-            this.groupBox6.Margin = new System.Windows.Forms.Padding(4);
-            this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox6.Size = new System.Drawing.Size(293, 262);
-            this.groupBox6.TabIndex = 40;
-            this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "Security";
-            // 
-            // btnDeleteCertificate
-            // 
-            this.btnDeleteCertificate.Location = new System.Drawing.Point(196, 112);
-            this.btnDeleteCertificate.Margin = new System.Windows.Forms.Padding(4);
-            this.btnDeleteCertificate.Name = "btnDeleteCertificate";
-            this.btnDeleteCertificate.Size = new System.Drawing.Size(85, 30);
-            this.btnDeleteCertificate.TabIndex = 21;
-            this.btnDeleteCertificate.Text = "Delete";
-            this.btnDeleteCertificate.UseVisualStyleBackColor = true;
-            this.btnDeleteCertificate.Click += new System.EventHandler(this.btnDeleteCertificate_Click);
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(12, 90);
-            this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(127, 17);
-            this.label12.TabIndex = 20;
-            this.label12.Text = "* Certificate delete:";
-            // 
-            // tbSerialNumber
-            // 
-            this.tbSerialNumber.Location = new System.Drawing.Point(12, 114);
-            this.tbSerialNumber.Margin = new System.Windows.Forms.Padding(4);
-            this.tbSerialNumber.Name = "tbSerialNumber";
-            this.tbSerialNumber.Size = new System.Drawing.Size(176, 22);
-            this.tbSerialNumber.TabIndex = 19;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(12, 158);
-            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(122, 17);
-            this.label11.TabIndex = 18;
-            this.label11.Text = "* Setup password:";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(12, 22);
-            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(132, 17);
-            this.label9.TabIndex = 4;
-            this.label9.Text = "* Certificate update:";
-            // 
-            // btnUpdateCertificate
-            // 
-            this.btnUpdateCertificate.Location = new System.Drawing.Point(196, 44);
-            this.btnUpdateCertificate.Margin = new System.Windows.Forms.Padding(4);
-            this.btnUpdateCertificate.Name = "btnUpdateCertificate";
-            this.btnUpdateCertificate.Size = new System.Drawing.Size(85, 30);
-            this.btnUpdateCertificate.TabIndex = 3;
-            this.btnUpdateCertificate.Text = "Update";
-            this.btnUpdateCertificate.UseVisualStyleBackColor = true;
-            this.btnUpdateCertificate.Click += new System.EventHandler(this.btnUpdateCertificate_Click);
-            // 
-            // tbCertificateFilePath
-            // 
-            this.tbCertificateFilePath.Location = new System.Drawing.Point(12, 46);
-            this.tbCertificateFilePath.Margin = new System.Windows.Forms.Padding(4);
-            this.tbCertificateFilePath.Name = "tbCertificateFilePath";
-            this.tbCertificateFilePath.ReadOnly = true;
-            this.tbCertificateFilePath.Size = new System.Drawing.Size(176, 22);
-            this.tbCertificateFilePath.TabIndex = 0;
             // 
             // btnSelectPrivateKey
             // 
@@ -805,12 +473,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(1323, 840);
+            this.ClientSize = new System.Drawing.Size(1323, 867);
             this.Controls.Add(this.groupBoxExport);
             this.Controls.Add(this.groupBox8);
-            this.Controls.Add(this.groupBox6);
-            this.Controls.Add(this.groupBox7);
-            this.Controls.Add(this.button2);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox2);
@@ -831,13 +496,8 @@
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.groupBox4.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.nmPowerOffTime)).EndInit();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
-            this.groupBox7.ResumeLayout(false);
-            this.groupBox7.PerformLayout();
-            this.groupBox6.ResumeLayout(false);
-            this.groupBox6.PerformLayout();
             this.groupBox8.ResumeLayout(false);
             this.groupBox8.PerformLayout();
             this.ResumeLayout(false);
@@ -849,7 +509,6 @@
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.TextBox txtMacAddress;
         private System.Windows.Forms.Button btnConnect;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox1;
@@ -869,40 +528,15 @@
         private System.Windows.Forms.ListBox lbOfflineData;
         private System.Windows.Forms.TextBox tbPenInfo;
         private System.Windows.Forms.ColorDialog colorDialog1;
-        private System.Windows.Forms.NumericUpDown nmPowerOffTime;
-        private System.Windows.Forms.CheckBox cbPenCapPower;
-        private System.Windows.Forms.CheckBox cbPenTipPowerOn;
-        private System.Windows.Forms.CheckBox cbBeep;
-        private System.Windows.Forms.CheckBox cbOfflineData;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ProgressBar prgPower;
         private System.Windows.Forms.ProgressBar prgStorage;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox tbOldPassword;
-        private System.Windows.Forms.TextBox tbNewPassword;
-        private System.Windows.Forms.Button btnPwdChange;
-        private System.Windows.Forms.Button btnUpgrade;
-        private System.Windows.Forms.TextBox tbFirmwarePath;
-        private System.Windows.Forms.TextBox tbFirmwareVersion;
-        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.GroupBox groupBox7;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Button btnUpdateCertificate;
         private System.Windows.Forms.TextBox tbPrivateKeyFilePath;
         private System.Windows.Forms.Button btnSelectPrivateKey;
-        private System.Windows.Forms.TextBox tbCertificateFilePath;
         private System.Windows.Forms.GroupBox groupBox8;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Button btnDeleteCertificate;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TextBox tbSerialNumber;
         private System.Windows.Forms.Button buttonpLastParticipant;
         private System.Windows.Forms.Label labelCurrentPageNum;
         private System.Windows.Forms.Label labelParticipantIDInput;

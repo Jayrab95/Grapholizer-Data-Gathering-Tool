@@ -73,7 +73,7 @@ namespace Neosmartpen.Net.Support
         {
 	        double fPressureRate = 0;
 
-	        // 필압 강도 측정 (nRangeMin ~ nRangeMax 사이의 값)
+            //Messung der Schälfestigkeit (Wert zwischen nRangeMin und nRangeMax)
             if ( nPressure < RANGE_MIN )
             {
                 nPressure = RANGE_MIN;
@@ -81,12 +81,12 @@ namespace Neosmartpen.Net.Support
 
 	        if( nPressure == 0 ) 
             {
-		        //압력값(퍼센트)를 가져온다.
-		        fPressureRate = 1;
+                //Ermitteln Sie den Druckwert (Prozent).
+                fPressureRate = 1;
 	        }
 	        else 
             {
-		        //압력값을 퍼센트로 환산한다.
+                //Wandeln Sie den Druck in einen Prozentsatz um.
                 fPressureRate = (double)( nPressure - RANGE_MIN + 1 ) / RANGE; 
 	        }
 
