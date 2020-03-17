@@ -43,7 +43,6 @@
             this.labelParticipant.Size = new System.Drawing.Size(148, 20);
             this.labelParticipant.TabIndex = 0;
             this.labelParticipant.Text = "Enter Participant ID";
-            this.labelParticipant.Click += new System.EventHandler(this.label1_Click);
             // 
             // textBoxParticipant
             // 
