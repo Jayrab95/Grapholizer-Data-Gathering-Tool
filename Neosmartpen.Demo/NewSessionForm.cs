@@ -7,14 +7,12 @@ namespace PenDemo
 {
     public partial class NewSessionForm : Form
     {
-        public delegate void delPassData(Session session);
+        private delPassSession callback;
         String FilePath;
-        MainForm mainFormRef;
-        Page currentPage;
         int maxForce;
-        public NewSessionForm(MainForm mainFormRef, int maxForce)
+        public NewSessionForm(delPassSession callback, int maxForce)
         {
-            this.mainFormRef = mainFormRef;
+            this.callback = callback;
             this.maxForce = maxForce;
             InitializeComponent();
         }
@@ -45,8 +43,8 @@ namespace PenDemo
             }
             Participant participant = new Participant(textBoxParticipantId.Text);
             Session session = new Session(textBoxSessionId.Text, textBoxParticipantId.Text, saveFileDialog.FileName, maxForce);
-            delPassData deleg = new delPassData(mainFormRef.acceptNewSessionFormInput);
-            deleg(session);
+      
+            callback(session);
             this.Close();
         }
     }

@@ -16,6 +16,14 @@ using System.Windows.Forms;
 
 namespace PenDemo
 {
+    public delegate void delPassParticipantID(String ID);
+    public delegate void delPassSession(Session session);
+
+    public delegate void delPassData(String ParticipantID, int pageNumber);
+    public delegate void delDeletePage(String ParticipantID, int pageNumber);
+    public delegate void delDeleteParticipant(String ParticipantID);
+    public delegate void renameParticipant(String OldParticipantID, String NewParticipantID);
+
     public partial class MainForm : Form, PenCommV1Callbacks, PenCommV2Callbacks
     {
         public PressureFilter mFilter;
@@ -49,7 +57,7 @@ namespace PenDemo
 
         private Session session { get; set; }
 
-    public delegate void RequestDele();
+        public delegate void RequestDele();
 
         public MainForm()
         {
@@ -352,7 +360,7 @@ namespace PenDemo
             if (session == null)
             {
                 buttonNewSession.Text = "Stop Session";
-                NewSessionForm sessForm = new NewSessionForm(this, maxForce);
+                NewSessionForm sessForm = new NewSessionForm(new delPassSession(acceptNewSessionFormInput), maxForce);
                 sessForm.Show();
             }
             else {
@@ -381,7 +389,7 @@ namespace PenDemo
 
         private void buttonNextParticipant_Click(object sender, EventArgs e) {
             session.SaveSessionToFile();
-            ParticipantCreateForm pCForm = new ParticipantCreateForm(this);
+            ParticipantCreateForm pCForm = new ParticipantCreateForm(new delPassParticipantID(acceptNewParticipantInput));
             pCForm.Show();
         }
 

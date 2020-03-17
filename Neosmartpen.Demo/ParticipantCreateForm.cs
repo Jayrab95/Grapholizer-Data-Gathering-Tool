@@ -11,20 +11,18 @@ namespace PenDemo
 {
     public partial class ParticipantCreateForm : Form
     {
-        MainForm MainFormRef;
-        public delegate void delPassData(String participantID);
+        delPassParticipantID callback;
 
-        public ParticipantCreateForm(MainForm mainFormRef)
+        public ParticipantCreateForm(delPassParticipantID callback)
         {
-            this.MainFormRef = mainFormRef;
+            this.callback = callback;
             InitializeComponent();
         }
 
         private void buttonAccept_Click(object sender, EventArgs e)
         {
             if (textBoxParticipant.Text == "" || textBoxParticipant.Text == null) return;
-            delPassData deleg = new delPassData(MainFormRef.acceptNewParticipantInput);
-            deleg(textBoxParticipant.Text);
+            callback(textBoxParticipant.Text);
             this.Close();
 
         }
