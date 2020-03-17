@@ -20,11 +20,6 @@ namespace PenDemo
             InitializeComponent();
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void buttonAccept_Click(object sender, EventArgs e)
         {
             if (textBoxParticipant.Text == "" || textBoxParticipant.Text == null) return;

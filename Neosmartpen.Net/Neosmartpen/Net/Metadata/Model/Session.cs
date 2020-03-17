@@ -82,6 +82,22 @@ namespace Neosmartpen.Net.Metadata.Model
             CurrentParticipantID = participantID;
         }
 
+        public bool RenameParticipant(String oldParticipantID, String newParticipantID) {
+            try
+            {
+                Participant partOld = ParticipantsMap[oldParticipantID];
+                ParticipantsMap.Remove(oldParticipantID);
+
+                partOld.Id = newParticipantID;
+                ParticipantsMap.Add(newParticipantID, partOld);
+            }
+            catch (ArgumentException)
+            {
+                return false;
+            }
+            return true;
+        }
+
         /// <summary>
         /// Adds Stroke to the current State of the Session
         /// Represented by the CurrentParticipantID and CurrentPage Object

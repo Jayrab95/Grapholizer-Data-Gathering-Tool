@@ -19,6 +19,7 @@ namespace PenDemo
         public delegate void delPassData(String ParticipantID, int pageNumber);
         public delegate void delDeletePage(String ParticipantID, int pageNumber);
         public delegate void delDeleteParticipant(String ParticipantID);
+        public delegate void renameParticipant(String OldParticipantID, String NewParticipantID);
 
         public SessionSelectionForm(MainForm MainformRef, Session session)
         {
@@ -95,6 +96,17 @@ namespace PenDemo
                 delDeleteParticipant delParticipant = new delDeleteParticipant(MainFormRef.acceptParticipantDeleteRequest);
                 delParticipant(SelectedParticipantID);
                 ListBoxParticipantID.Items.Remove(SelectedParticipantID);
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            //Check if there is anything in the textbox and if there is a active selection
+            if (SelectedParticipantID != null && textBoxPartId.Text != null && textBoxPartId.Text != "")
+            {
+                renameParticipant renameParticipant = new renameParticipant(MainFormRef.acceptParticipantRenameRequest);
+                renameParticipant(SelectedParticipantID, textBoxPartId.Text);
+                this.Close();
             }
         }
     }

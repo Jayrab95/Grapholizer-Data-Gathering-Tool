@@ -399,16 +399,29 @@ namespace PenDemo
             }
         }
 
+        /// <summary>
+        /// Delegate Function that receives the id of the participant that needs to be deleted
+        /// </summary>
+        /// <param name="participantID"></param>
         public void acceptParticipantDeleteRequest(String participantID)
         {
             session.DeleteParticipant(participantID);
         }
 
+        /// <summary>
+        /// Delegate Function that receives the participantId and Page number that should be deleted
+        /// </summary>
+        /// <param name="participantID"></param>
+        /// <param name="pageNumber"></param>
         public void acceptPageDeleteRequest(String participantID, int pageNumber)
         {
             session.DeletePage(participantID, pageNumber);
         }
 
+        /// <summary>
+        /// Delegate Function receives a new Session from the NewSessionForm
+        /// </summary>
+        /// <param name="session"></param>
         public void acceptNewSessionFormInput(Session session)
         {
             this.session = session;
@@ -427,6 +440,11 @@ namespace PenDemo
             DrawSession();
         }
 
+        public void acceptParticipantRenameRequest(String oldParticipantID, String newParticipantID)
+        {
+            session.RenameParticipant(oldParticipantID, newParticipantID);
+        }
+
         private void Form1_FormClosed( object sender, FormClosedEventArgs e )
         {
             if ( mBtAdt != null )
@@ -442,6 +460,7 @@ namespace PenDemo
         void PenCommV1Callbacks.onConnected( IPenComm sender, int maxForce, string swVersion )
         {
             this.maxForce = maxForce;
+            Console.WriteLine("Max Force: " + maxForce);
             mFilter = new PressureFilter( maxForce );
 
             this.BeginInvoke( new MethodInvoker( delegate()
@@ -487,17 +506,9 @@ namespace PenDemo
             }));
         }
 
-        void PenCommV1Callbacks.onAvailableNoteAccepted(IPenComm sender, bool result)
-        {
-        }
-
         void PenCommV1Callbacks.onReceiveDot( IPenComm sender, Dot dot )
         {
             ProcessDot( dot );
-        }
-
-        void PenCommV1Callbacks.onUpDown( IPenComm sender, bool isUp )
-        {
         }
 
         void PenCommV1Callbacks.onReceivedPenStatus( IPenComm sender, int timeoffset, long timetick
@@ -516,10 +527,6 @@ namespace PenDemo
             } ) );
         }
 
-        void PenCommV1Callbacks.onPenPasswordSetUpResponse( IPenComm sender, bool result )
-        {
-            //
-        }
 
         void PenCommV1Callbacks.onPenSensitivitySetUpResponse( IPenComm sender, bool isSuccess )
         {
@@ -664,6 +671,7 @@ namespace PenDemo
         {
             mFilter = new PressureFilter( maxForce );
             this.maxForce = maxForce;
+            Console.WriteLine("Max Force: " + maxForce);
             this.BeginInvoke( new MethodInvoker( delegate()
             {
                 btnConnect.Text = "Disconnect";
@@ -926,7 +934,7 @@ namespace PenDemo
         }
         #endregion
 
-        #region pencontrol
+        #region penControl
         private void button3_Click( object sender, EventArgs e )
         {
             if ( lbOfflineData.SelectedItem == null )
@@ -972,19 +980,24 @@ namespace PenDemo
             if (session != null)
             {
                 ToggleSessionButtons();
-                session.SaveSessionToFile();
             }
-
+            session.SaveSessionToFile();
             String filePath = openFileDialog("Load Session", "No valid file selected", "Json file|*.json");
             if (filePath != null) {
                 session = new Session(null, null, filePath, maxForce);
-                if (!session.LoadSessionFromFile(filePath)) MessageBox.Show("Loading the new Session from file failed");
+                if (!session.LoadSessionFromFile(filePath)) {
+                    MessageBox.Show("Loading the new Session from file failed");
+                }
+                else
+                {
+                    labelParticipantIDInput.Text = session.CurrentParticipantID;
+                    labelPageNumberInput.Text = "" + session.CurrentPage.Number;
+                    buttonNewSession.Text = "Stop Session";
+                    InitImage();
+                    DrawSession();
+                }
 
-                labelParticipantIDInput.Text = session.CurrentParticipantID;
-                labelPageNumberInput.Text = "" + session.CurrentPage.Number;
-                ToggleSessionButtons();
-                InitImage();
-                DrawSession();
+
             }
         }
 
@@ -1020,6 +1033,21 @@ namespace PenDemo
 
             }
             return null;
+        }
+
+        public void onAvailableNoteAccepted(IPenComm sender, bool result)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void onUpDown(IPenComm sender, bool isUp)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void onPenPasswordSetUpResponse(IPenComm sender, bool result)
+        {
+            throw new NotImplementedException();
         }
         #endregion
     }

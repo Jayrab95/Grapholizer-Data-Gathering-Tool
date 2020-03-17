@@ -182,7 +182,7 @@ namespace Neosmartpen.Net
                     break;
             }
             
-            this.Force = (int) cDot.Force * maxForce;
+            this.Force = (int)(cDot.Force * maxForce);
             this.X = cDot.X;
             this.Y = cDot.Y;
             this.Fx = cDot.Fx;

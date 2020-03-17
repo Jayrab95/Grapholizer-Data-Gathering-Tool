@@ -100,7 +100,7 @@
             this.buttonNewSession.Location = new System.Drawing.Point(13, 41);
             this.buttonNewSession.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonNewSession.Name = "buttonNewSession";
-            this.buttonNewSession.Size = new System.Drawing.Size(100, 33);
+            this.buttonNewSession.Size = new System.Drawing.Size(100, 45);
             this.buttonNewSession.TabIndex = 6;
             this.buttonNewSession.Text = "New Session";
             this.buttonNewSession.Click += new System.EventHandler(this.buttonNewSession_Click);
@@ -108,10 +108,10 @@
             // buttonExport
             // 
             this.buttonExport.Enabled = false;
-            this.buttonExport.Location = new System.Drawing.Point(131, 44);
+            this.buttonExport.Location = new System.Drawing.Point(124, 44);
             this.buttonExport.Margin = new System.Windows.Forms.Padding(4);
             this.buttonExport.Name = "buttonExport";
-            this.buttonExport.Size = new System.Drawing.Size(61, 30);
+            this.buttonExport.Size = new System.Drawing.Size(61, 42);
             this.buttonExport.TabIndex = 22;
             this.buttonExport.Text = "Save";
             this.buttonExport.UseVisualStyleBackColor = true;
@@ -177,14 +177,14 @@
             this.groupBoxExport.Size = new System.Drawing.Size(295, 222);
             this.groupBoxExport.TabIndex = 26;
             this.groupBoxExport.TabStop = false;
-            this.groupBoxExport.Text = "Participant Control";
+            this.groupBoxExport.Text = "Session Control";
             // 
             // loadSessionBtn
             // 
             this.loadSessionBtn.Location = new System.Drawing.Point(196, 44);
             this.loadSessionBtn.Margin = new System.Windows.Forms.Padding(4);
             this.loadSessionBtn.Name = "loadSessionBtn";
-            this.loadSessionBtn.Size = new System.Drawing.Size(91, 30);
+            this.loadSessionBtn.Size = new System.Drawing.Size(91, 42);
             this.loadSessionBtn.TabIndex = 28;
             this.loadSessionBtn.Text = "Load Session";
             this.loadSessionBtn.UseVisualStyleBackColor = true;
