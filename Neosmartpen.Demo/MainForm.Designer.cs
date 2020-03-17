@@ -224,6 +224,7 @@
             // 
             // buttonpLastParticipant
             // 
+            this.buttonpLastParticipant.Enabled = false;
             this.buttonpLastParticipant.Location = new System.Drawing.Point(12, 174);
             this.buttonpLastParticipant.Margin = new System.Windows.Forms.Padding(4);
             this.buttonpLastParticipant.Name = "buttonpLastParticipant";
@@ -473,7 +474,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(1323, 867);
+            this.ClientSize = new System.Drawing.Size(1323, 605);
             this.Controls.Add(this.groupBoxExport);
             this.Controls.Add(this.groupBox8);
             this.Controls.Add(this.groupBox3);

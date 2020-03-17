@@ -181,7 +181,10 @@ namespace Neosmartpen.Net
                     this.DotType = DotTypes.PEN_ERROR;
                     break;
             }
+            
             this.Force = (int) cDot.Force * maxForce;
+            this.X = cDot.X;
+            this.Y = cDot.Y;
             this.Fx = cDot.Fx;
             this.Fy = cDot.Fy;
             this.Timestamp = timeStamp;

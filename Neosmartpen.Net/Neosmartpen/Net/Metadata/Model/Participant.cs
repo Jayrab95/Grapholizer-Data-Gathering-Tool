@@ -17,6 +17,7 @@ namespace Neosmartpen.Net.Metadata.Model
         public Participant(CompressedParticipant cParticipant, int maxForce)
         {
             this.Id = cParticipant.Id;
+            this.Pages = new List<Page>();
             if (cParticipant.Pages != null)
             {
                 if (cParticipant.Pages.Count > 0)

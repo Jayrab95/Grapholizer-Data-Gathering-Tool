@@ -81,6 +81,7 @@ namespace Neosmartpen.Net.Metadata.Model
         {
             CurrentParticipantID = participantID;
         }
+
         /// <summary>
         /// Adds Stroke to the current State of the Session
         /// Represented by the CurrentParticipantID and CurrentPage Object
@@ -162,20 +163,17 @@ namespace Neosmartpen.Net.Metadata.Model
         public bool LoadSessionFromFile(String filePath) {
             String content = File.ReadAllText(filePath);
             if (content == null) return false;
-            Console.WriteLine("deformat");
             ParticipantsMap = JsonFormatter.Deformat(content, maxForce);
-
-            Console.WriteLine("finished deformat");
-
+  
             IEnumerator enumerator = ParticipantsMap.Keys.GetEnumerator();
             enumerator.MoveNext();
-            Participant first = (Participant)enumerator.Current;
+            String first_id = (String) enumerator.Current;
+            Participant first = ParticipantsMap[first_id];
 
             String fileName = Path.GetFileName(filePath);
             CurrentParticipantID = first.Id;
             CurrentPage = first.Pages[0];
             SessionID = fileName;
-
             return true;
         }
 

@@ -240,7 +240,6 @@ namespace PenDemo
 
         private void ProcessDot(Dot dot)
         {
-            Console.WriteLine("Force: " + dot.Force);
             if (session != null)
             {
                 dot.Force = mFilter.Filter(dot.Force);
@@ -969,23 +968,24 @@ namespace PenDemo
 
         private void loadSessionBtn_Click(object sender, EventArgs e)
         {
-            ToggleSessionButtons();
-            Console.WriteLine("Hallo");
+            
             if (session != null)
             {
-                Console.WriteLine("isNotNull");
+                ToggleSessionButtons();
                 session.SaveSessionToFile();
-                MessageBox.Show("Saved Data to file before loading");
             }
 
             String filePath = openFileDialog("Load Session", "No valid file selected", "Json file|*.json");
-            Console.WriteLine("new Sess");
-            session = new Session(null, null, filePath, maxForce);
-            Console.WriteLine("Load Sess");
-            if (!session.LoadSessionFromFile(filePath)) MessageBox.Show("Loading the new Session from file failed");
-            labelParticipantIDInput.Text = session.CurrentParticipantID;
-            labelPageNumberInput.Text = "" + session.CurrentPage.Number;
-            ToggleSessionButtons();
+            if (filePath != null) {
+                session = new Session(null, null, filePath, maxForce);
+                if (!session.LoadSessionFromFile(filePath)) MessageBox.Show("Loading the new Session from file failed");
+
+                labelParticipantIDInput.Text = session.CurrentParticipantID;
+                labelPageNumberInput.Text = "" + session.CurrentPage.Number;
+                ToggleSessionButtons();
+                InitImage();
+                DrawSession();
+            }
         }
 
         private void btnSelectPrivateKey_Click(object sender, EventArgs e)
