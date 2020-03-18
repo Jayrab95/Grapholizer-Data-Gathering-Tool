@@ -19,10 +19,10 @@ namespace PenDemo
     public delegate void delPassParticipantID(String ID);
     public delegate void delPassSession(Session session);
 
-    public delegate void delPassData(String ParticipantID, int pageNumber);
+    public delegate void delSelectParticipant(String ParticipantID, int pageNumber);
     public delegate void delDeletePage(String ParticipantID, int pageNumber);
     public delegate void delDeleteParticipant(String ParticipantID);
-    public delegate void renameParticipant(String OldParticipantID, String NewParticipantID);
+    public delegate void delRenameParticipant(String OldParticipantID, String NewParticipantID);
 
     public partial class MainForm : Form, PenCommV1Callbacks, PenCommV2Callbacks
     {
@@ -978,33 +978,31 @@ namespace PenDemo
 
         private void buttonpLastParticipant_Click(object sender, EventArgs e)
         {
-            SessionSelectionForm sessSelectForm = new SessionSelectionForm(this, session);
+            delSelectParticipant select = new delSelectParticipant(acceptParticipantChangedInput);
+            delDeletePage deletePage = new delDeletePage(acceptPageDeleteRequest);
+            delDeleteParticipant deleteParticipant = new delDeleteParticipant(acceptParticipantDeleteRequest);
+            delRenameParticipant rename = new delRenameParticipant(acceptParticipantRenameRequest);
+            SessionSelectionForm sessSelectForm = new SessionSelectionForm(select, deletePage, deleteParticipant, rename, session);
             sessSelectForm.Show();
         }
 
         private void loadSessionBtn_Click(object sender, EventArgs e)
         {
-            
-            if (session != null)
-            {
-                ToggleSessionButtons();
-            }
             session.SaveSessionToFile();
             String filePath = openFileDialog("Load Session", "No valid file selected", "Json file|*.json");
             if (filePath != null) {
-                session = new Session(null, null, filePath, maxForce);
                 if (!session.LoadSessionFromFile(filePath)) {
                     MessageBox.Show("Loading the new Session from file failed");
                 }
                 else
                 {
+                    session = new Session(null, null, filePath, maxForce);
                     labelParticipantIDInput.Text = session.CurrentParticipantID;
                     labelPageNumberInput.Text = "" + session.CurrentPage.Number;
                     buttonNewSession.Text = "Stop Session";
                     InitImage();
                     DrawSession();
                 }
-
 
             }
         }

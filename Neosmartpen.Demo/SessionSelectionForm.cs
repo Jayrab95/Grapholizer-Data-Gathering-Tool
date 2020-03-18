@@ -16,14 +16,20 @@ namespace PenDemo
         Session session;
         String SelectedParticipantID = null;
         int SelectedPageNum = -1;
-        public delegate void delPassData(String ParticipantID, int pageNumber);
-        public delegate void delDeletePage(String ParticipantID, int pageNumber);
-        public delegate void delDeleteParticipant(String ParticipantID);
-        public delegate void renameParticipant(String OldParticipantID, String NewParticipantID);
+        delSelectParticipant callBackSelect;
+        delDeletePage callBackDeletePage;
+        delDeleteParticipant callBackDeleteParticipant;
+        delRenameParticipant callBackRename;
 
-        public SessionSelectionForm(MainForm MainformRef, Session session)
+        public SessionSelectionForm(
+            delSelectParticipant callBackSelect, delDeletePage callBackDeletePage
+            , delDeleteParticipant callBackDeleteParticipant, delRenameParticipant callBackRename
+            , Session session)
         {
-            this.MainFormRef = MainformRef;
+            this.callBackSelect = callBackSelect;
+            this.callBackDeletePage = callBackDeletePage;
+            this.callBackDeleteParticipant = callBackDeleteParticipant;
+            this.callBackRename = callBackRename;
             this.session = session;
             InitializeComponent();
             //Load the data from the session
@@ -66,8 +72,7 @@ namespace PenDemo
         {
             if (SelectedParticipantID != null && SelectedPageNum != -1)
             {
-                delPassData deleg = new delPassData(MainFormRef.acceptParticipantChangedInput);
-                deleg(SelectedParticipantID, SelectedPageNum);
+                callBackSelect(SelectedParticipantID, SelectedPageNum);
                 this.Close();
             }
             else
@@ -80,8 +85,7 @@ namespace PenDemo
         {
             if (SelectedPageNum != -1 && listBoxPageNumber.Items.Count > 1)
             {
-                delDeletePage delPage = new delDeletePage(MainFormRef.acceptPageDeleteRequest);
-                delPage(SelectedParticipantID, SelectedPageNum);
+                callBackDeletePage(SelectedParticipantID, SelectedPageNum);
                 listBoxPageNumber.Items.Remove(SelectedPageNum);
             }
             else {
@@ -93,8 +97,7 @@ namespace PenDemo
         {
             if (SelectedParticipantID != null && ListBoxParticipantID.Items.Count > 1)
             {
-                delDeleteParticipant delParticipant = new delDeleteParticipant(MainFormRef.acceptParticipantDeleteRequest);
-                delParticipant(SelectedParticipantID);
+                callBackDeleteParticipant(SelectedParticipantID);
                 ListBoxParticipantID.Items.Remove(SelectedParticipantID);
             }
         }
@@ -104,8 +107,7 @@ namespace PenDemo
             //Check if there is anything in the textbox and if there is a active selection
             if (SelectedParticipantID != null && textBoxPartId.Text != null && textBoxPartId.Text != "")
             {
-                renameParticipant renameParticipant = new renameParticipant(MainFormRef.acceptParticipantRenameRequest);
-                renameParticipant(SelectedParticipantID, textBoxPartId.Text);
+                callBackRename(SelectedParticipantID, textBoxPartId.Text);
                 this.Close();
             }
         }
