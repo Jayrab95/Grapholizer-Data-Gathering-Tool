@@ -988,20 +988,25 @@ namespace PenDemo
 
         private void loadSessionBtn_Click(object sender, EventArgs e)
         {
-            session.SaveSessionToFile();
+            
             String filePath = openFileDialog("Load Session", "No valid file selected", "Json file|*.json");
+            if(session != null) session.SaveSessionToFile();
+
             if (filePath != null) {
+                session = new Session(null, null, filePath, maxForce);
                 if (!session.LoadSessionFromFile(filePath)) {
                     MessageBox.Show("Loading the new Session from file failed");
+                    session = null;
                 }
                 else
                 {
-                    session = new Session(null, null, filePath, maxForce);
+                    
                     labelParticipantIDInput.Text = session.CurrentParticipantID;
                     labelPageNumberInput.Text = "" + session.CurrentPage.Number;
                     buttonNewSession.Text = "Stop Session";
                     InitImage();
                     DrawSession();
+                    ToggleSessionButtons();
                 }
 
             }
